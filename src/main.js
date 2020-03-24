@@ -23,7 +23,7 @@ import * as geocode from 'esri-leaflet-geocoder';
 global.Geocoding = geocode;
 // get geocodding function
 global.geocodeService = Geocoding.geocodeService();
-// function rase algoritm 
+// function ray casting algorithm 
 global.inside = require("point-in-polygon");
 // --------------------------------------------------------------------------
 Vue.config.productionTip = false;

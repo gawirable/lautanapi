@@ -16,7 +16,7 @@
           <div clas="row">
             <div class="input-group mb-3">
               <input type="text" class="form-control basicAutoComplete" autocomplete="off" placeholder="Alamat Rumah"
-                v-model="alamat" v-on:keyup.enter="sugest(alamat)">
+                v-model="alamat" v-on:keyup.enter="suggest(alamat)">
               <button type="button" class="" v-on:click="find_coor">Lokasi Saat ini</button>
             </div>
 
@@ -61,7 +61,7 @@
     },
     methods: {
       //---------------------------------------------------------------------------------------------------------------------
-      sugest: function (alamat) {
+      suggest: function (alamat) {
         var self = this;
         self.render_suggest = "";
         // get address suggest
