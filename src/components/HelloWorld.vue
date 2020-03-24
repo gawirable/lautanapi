@@ -33,8 +33,6 @@
               <h5 class="display-5">Cek Resiko Kebakaran</h5>
               <hr class="my-4">
               <p>{{status}}</p>
-              <hr>
-              <p>anda berada di [alamat],[kecamatan], berada di [kota], dengan titik koordinat [koordinat]</p>
               <hr class="my-4">
             </div>
           </div>
@@ -53,7 +51,9 @@
         alamat: "",
         render_suggest: "",
         koordinat: [],
-        status: "asdasd",
+        status: "",
+        root_kecamatan:[],
+        index_kecamatan:null,
       };
     },
     methods: {
@@ -122,8 +122,6 @@
         // add GeoJSON layer to the map once the file is loaded
         var datalayer = L.geoJson(data_kota, {
           onEachFeature: function (feature, featureLayer) {
-
-            //featureLayer.bindPopup(feature.properties.nama_kecamatan);
             coords_kota.push(feature.geometry.coordinates[0]);
           }
         });
@@ -145,10 +143,10 @@
       global.coords_rev = [];
       $.getJSON("static/map-kecamatan.json", function (data) {
 
-        // add GeoJSON layer to the map once the file is loaded
+        // add GeoJSON layer to the map once the file is loadeda
         var datalayer = L.geoJson(data, {
           onEachFeature: function (feature, featureLayer) {
-            featureLayer.bindPopup(feature.properties.nama_kecamatan);
+            self.root_kecamatan.push(featureLayer.bindPopup(feature.properties.nama_kecamatan));
             coords.push(feature.geometry.coordinates[0]);
           }
         });
@@ -183,7 +181,7 @@
             inside(curpos, coords_rev[i]);
             if (inside(curpos, coords_rev[i])) {
               pesan = "inside polygon: " + i;
-              self.status = "inside polygon: " + i;
+              self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
               break;
             }
           }
@@ -192,6 +190,7 @@
           self.status = "Anda Berada diluar kota bandung "
         }
         console.log(pesan);
+        //console.log(self.root_kecamatan[self.index_kecamatan].feature.properties.nama_kecamatan);
 
         //geocoding
         geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
@@ -229,14 +228,13 @@
                 .replace(" ", "")
                 .split(",");
               var pesan = "";
-              console.log(coords_rev.length);
-              console.log(curpos);
+
               try {
                 for (let i = 0; i <= coords_rev.length; i++) {
                   inside(curpos, coords_rev[i]);
                   if (inside(curpos, coords_rev[i])) {
                     pesan = "inside polygon: " + i;
-                    self.status = "inside polygon: " + i;
+                    self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
                     break;
                   }
                 }
@@ -245,6 +243,7 @@
                 self.status = "Anda Berada diluar kota bandung "
               }
               console.log(pesan);
+              //console.log(self.root_kecamatan[self.index_kecamatan].feature.properties.nama_kecamatan);
             });
         });
       }
