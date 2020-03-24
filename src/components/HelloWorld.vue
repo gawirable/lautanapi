@@ -5,7 +5,6 @@
       <div class="row">
         <div class="col">
           <h1>{{ msg }}</h1>
-
         </div>
       </div>
       <div class="row">
@@ -18,8 +17,9 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control basicAutoComplete" autocomplete="off" placeholder="Alamat Rumah"
                 v-model="alamat" v-on:keyup.enter="sugest(alamat)">
+              <button type="button" class="" v-on:click="find_coor">Lokasi Saat ini</button>
             </div>
-            <div id="geocoder" class="geocoder"></div>
+
           </div>
           <div class="row suges">
             <div class="col-md-12">
@@ -52,11 +52,12 @@
         render_suggest: "",
         koordinat: [],
         status: "",
-        root_kecamatan:[],
-        index_kecamatan:null,
+        root_kecamatan: [],
+        index_kecamatan: null,
       };
     },
     methods: {
+      //---------------------------------------------------------------------------------------------------------------------
       sugest: function (alamat) {
         var self = this;
         self.render_suggest = "";
@@ -78,14 +79,56 @@
           });
         $(".sugest").show();
       },
-      find_coor: function (alamat) {
+      //---------------------------------------------------------------------------------------------------------------------
+      find_coor: function () {
         var self = this;
-        Geocoding.geocode().text(alamat)
-          .run((err, results, response) => {
-            self.koordinat = results.results[0].latlng;
-            //console.log("sukses "+self.koordinat);
-          });
+        mymap.locate({ setView: true, maxZoom: 16 });
+        mymap.on('locationfound', this.onLocationFound);
+        mymap.on('locationerror', this.onLocationError);
+      },
+      onLocationFound: function (e) {
+        //theMarker = L.marker(e.latlng, { icon: greenIcon }).addTo(mymap);
+        var self = this
+        var str = e.latlng.toString();
+        var curpos = str
+          .substring(7)
+          .replace(")", "")
+          .replace(" ", "")
+          .split(",");
+        var pesan = "";
+
+        //cari kecamatan
+        try {
+          for (let i = 0; i <= coords_rev.length; i++) {
+            inside(curpos, coords_rev[i]);
+            if (inside(curpos, coords_rev[i])) {
+              pesan = "inside polygon: " + i;
+              self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
+              break;
+            }
+          }
+        } catch (err) {
+          pesan = "Anda Berada diluar kota bandung ";
+          self.status = "Anda Berada diluar kota bandung "
+        }
+        console.log(pesan);
+
+        //geocoding
+        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
+          if (error) {
+            return;
+          }
+          if (theMarker != undefined) {
+            mymap.removeLayer(theMarker);
+          };
+          theMarker = L.marker(result.latlng, { icon: greenIcon }).addTo(mymap).bindPopup(result.address.Match_addr).openPopup();
+        })
+
+      },//end onlocationfound
+      onLocationError: function (e) {
+        alert(e.message);
       }
+      //---------------------------------------------------------------------------------------------------------------------
     },
     //end methode
     created: function () {
@@ -114,6 +157,7 @@
           "<h2>Selamat datang</h2><hr><p>Silahkan masukan alamat rumah anda, atau klik pada peta dan geser pin dibawah ini.</p>"
         ).openPopup();
 
+      //---------------------------------------------------------------------------------------------------------------------
       //geojson batas kota
       global.coords_kota = [];
       global.coords_rev_kota = [];
@@ -133,7 +177,6 @@
             coords_rev_kota[i][ii] = coords_kota[i][ii].reverse();
           }
         }
-
         //create polygon kecamatan
         //var polygon_kota = L.polygon(coords_rev_kota).addTo(mymap);
       });
@@ -158,15 +201,13 @@
             coords_rev[i][ii] = coords[i][ii].reverse();
           }
         }
-
         //create polygon kecamatan
         var polygon = L.polygon(coords_rev).addTo(mymap);
       });
+      //---------------------------------------------------------------------------------------------------------------------
 
-      //--------------------------------------------------------------------
       mymap.on("click", function mapClickListen(e) {
         //cek poly on click
-        var inside2 = require("point-in-polygon");
         var str = e.latlng.toString();
         var curpos = str
           .substring(7)
@@ -190,7 +231,6 @@
           self.status = "Anda Berada diluar kota bandung "
         }
         console.log(pesan);
-        //console.log(self.root_kecamatan[self.index_kecamatan].feature.properties.nama_kecamatan);
 
         //geocoding
         geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
@@ -203,11 +243,10 @@
           theMarker = L.marker(result.latlng, { icon: greenIcon }).addTo(mymap).bindPopup(result.address.Match_addr).openPopup();
         })
 
-        //-----------------------------------------------------------
       });//end on click
-      //-----------------------------------------------------------
     },//end mounted
     updated: function () {
+      //---------------------------------------------------------------------------------------------------------------------
       var self = this;
       for (let i = 0; i < 5; i++) {
         $("#sgs" + i).click(function () {
@@ -246,8 +285,8 @@
               //console.log(self.root_kecamatan[self.index_kecamatan].feature.properties.nama_kecamatan);
             });
         });
-      }
-    }
+      }//end for
+    }//end updated
   };//end export
 </script>
 
