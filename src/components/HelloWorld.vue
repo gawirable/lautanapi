@@ -90,7 +90,6 @@
         mymap.on('locationerror', this.onLocationError);
       },
       onLocationFound: function (e) {
-        //theMarker = L.marker(e.latlng, { icon: greenIcon }).addTo(mymap);
         var self = this
         var str = e.latlng.toString();
         var curpos = str
@@ -162,7 +161,7 @@
 
       //---------------------------------------------------------------------------------------------------------------------
       //geojson batas kota
-      $.getJSON("static/map-kecamatan-merge.json", function (data_kota) {
+      $.getJSON("static/map-kota.json", function (data_kota) {
 
         // add GeoJSON layer to the map once the file is loaded
         var datalayer = L.geoJson(data_kota, {
