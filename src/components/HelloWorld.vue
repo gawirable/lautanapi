@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <img src="../assets/logo.png">
+    <!--<img src="../assets/logo.png">-->
     <div class="container">
       <div class="row">
         <div class="col">
