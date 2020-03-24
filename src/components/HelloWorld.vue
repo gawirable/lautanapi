@@ -53,7 +53,10 @@
         koordinat: [],
         status: "",
         root_kecamatan: [],
-        index_kecamatan: null,
+        coords_kota: [],
+        coords_rev_kota: [],
+        coords: [],
+        coords_rev: []
       };
     },
     methods: {
@@ -99,9 +102,9 @@
 
         //cari kecamatan
         try {
-          for (let i = 0; i <= coords_rev.length; i++) {
-            inside(curpos, coords_rev[i]);
-            if (inside(curpos, coords_rev[i])) {
+          for (let i = 0; i <= self.coords_rev.length; i++) {
+            inside(curpos, self.coords_rev[i]);
+            if (inside(curpos, self.coords_rev[i])) {
               pesan = "inside polygon: " + i;
               self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
               break;
@@ -132,6 +135,14 @@
     },
     //end methode
     created: function () {
+
+    },
+    mounted: function () {
+      //---------------------------------------------------------------------------------------------------------------------
+      //center & zoom map
+      global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
+      //map themes
+      L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
       // marker icon
       global.greenIcon = L.icon({
         iconUrl: require("../assets/images/marker-icon.png"),
@@ -139,42 +150,32 @@
         iconSize: [25, 41], // size of the icon
         shadowSize: [41, 41] // size of the shadow
       });
-
-    },
-    mounted: function () {
-      var self = this;
-      $(".sugest").hide();
-      //center & zoom map
-      global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
-
-      //map themes
-      L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
-
       //create marker
       global.theMarker = L.marker([-6.9174639, 107.6191228], { icon: greenIcon })
         .addTo(mymap)
         .bindPopup(
           "<h2>Selamat datang</h2><hr><p>Silahkan masukan alamat rumah anda, atau klik pada peta dan geser pin dibawah ini.</p>"
         ).openPopup();
+      //---------------------------------------------------------------------------------------------------------------------
+      var self = this;
+      $(".sugest").hide();
 
       //---------------------------------------------------------------------------------------------------------------------
       //geojson batas kota
-      global.coords_kota = [];
-      global.coords_rev_kota = [];
       $.getJSON("static/map-kecamatan-merge.json", function (data_kota) {
 
         // add GeoJSON layer to the map once the file is loaded
         var datalayer = L.geoJson(data_kota, {
           onEachFeature: function (feature, featureLayer) {
-            coords_kota.push(feature.geometry.coordinates[0]);
+            self.coords_kota.push(feature.geometry.coordinates[0]);
           }
         });
 
         //flip coordinate
-        for (let i = 0; i < coords_kota.length; i++) {
-          coords_rev_kota[i] = [];
-          for (let ii = 0; ii < coords_kota[i].length; ii++) {
-            coords_rev_kota[i][ii] = coords_kota[i][ii].reverse();
+        for (let i = 0; i < self.coords_kota.length; i++) {
+          self.coords_rev_kota[i] = [];
+          for (let ii = 0; ii < self.coords_kota[i].length; ii++) {
+            self.coords_rev_kota[i][ii] = self.coords_kota[i][ii].reverse();
           }
         }
         //create polygon kecamatan
@@ -182,27 +183,25 @@
       });
 
       //geojson batas kecamatan
-      global.coords = [];
-      global.coords_rev = [];
       $.getJSON("static/map-kecamatan.json", function (data) {
 
         // add GeoJSON layer to the map once the file is loadeda
         var datalayer = L.geoJson(data, {
           onEachFeature: function (feature, featureLayer) {
             self.root_kecamatan.push(featureLayer.bindPopup(feature.properties.nama_kecamatan));
-            coords.push(feature.geometry.coordinates[0]);
+            self.coords.push(feature.geometry.coordinates[0]);
           }
         });
 
         //flip coordinate
-        for (let i = 0; i < coords.length; i++) {
-          coords_rev[i] = [];
-          for (let ii = 0; ii < coords[i].length; ii++) {
-            coords_rev[i][ii] = coords[i][ii].reverse();
+        for (let i = 0; i < self.coords.length; i++) {
+          self.coords_rev[i] = [];
+          for (let ii = 0; ii < self.coords[i].length; ii++) {
+            self.coords_rev[i][ii] = self.coords[i][ii].reverse();
           }
         }
         //create polygon kecamatan
-        var polygon = L.polygon(coords_rev).addTo(mymap);
+        var polygon = L.polygon(self.coords_rev).addTo(mymap);
       });
       //---------------------------------------------------------------------------------------------------------------------
 
@@ -218,9 +217,9 @@
 
         //cari kecamatan
         try {
-          for (let i = 0; i <= coords_rev.length; i++) {
-            inside(curpos, coords_rev[i]);
-            if (inside(curpos, coords_rev[i])) {
+          for (let i = 0; i <= self.coords_rev.length; i++) {
+            inside(curpos, self.coords_rev[i]);
+            if (inside(curpos, self.coords_rev[i])) {
               pesan = "inside polygon: " + i;
               self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
               break;
@@ -269,9 +268,9 @@
               var pesan = "";
 
               try {
-                for (let i = 0; i <= coords_rev.length; i++) {
-                  inside(curpos, coords_rev[i]);
-                  if (inside(curpos, coords_rev[i])) {
+                for (let i = 0; i <= self.coords_rev.length; i++) {
+                  inside(curpos, self.coords_rev[i]);
+                  if (inside(curpos, self.coords_rev[i])) {
                     pesan = "inside polygon: " + i;
                     self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
                     break;
@@ -282,7 +281,6 @@
                 self.status = "Anda Berada diluar kota bandung "
               }
               console.log(pesan);
-              //console.log(self.root_kecamatan[self.index_kecamatan].feature.properties.nama_kecamatan);
             });
         });
       }//end for
