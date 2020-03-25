@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="home">
     <!--<img src="../assets/logo.png">-->
     <div class="container">
       <div class="row">
@@ -44,7 +44,7 @@
 
 <script>
   export default {
-    name: "HelloWorld",
+    name: "Home",
     data() {
       return {
         msg: "Lautan Api",
