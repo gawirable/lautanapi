@@ -1,11 +1,15 @@
 <template>
   <div class="home">
     <!--<img src="../assets/logo.png">-->
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt />
+        {{ msg }}
+      </a>
+    </nav>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <h1>{{ msg }}</h1>
-        </div>
+        <div class="col"></div>
       </div>
     </div>
   </div>
@@ -28,22 +32,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
