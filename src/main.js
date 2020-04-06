@@ -8,13 +8,10 @@ import router from "./router";
 global.$ = require("jquery");
 global.jQuery = require("jquery");
 
-//import popper
-import "@popperjs/core";
-
-// import bootstrap-vue
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+// import bootstrap & popper
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+import "popper.js/dist/esm/popper.js";
+import "bootstrap/dist/js/bootstrap.js";
 
 // import leaflet js
 require("../node_modules/leaflet/dist/leaflet.css");
@@ -36,12 +33,6 @@ global.inside = require("point-in-polygon");
 // --------------------------------------------------------------------------
 Vue.config.productionTip = false;
 
-// Install BootstrapVue
-Vue.use(BootstrapVue);
-
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin);
-
 new Vue({
   data: {
     //Geocoding:geocode,
@@ -49,5 +40,5 @@ new Vue({
   el: "#app",
   router,
   components: { App },
-  template: "<App/>",
+  template: "<App/>"
 });
