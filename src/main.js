@@ -30,6 +30,9 @@ global.geocodeService = Geocoding.geocodeService();
 // function ray casting algorithm
 global.inside = require("point-in-polygon");
 
+// install alasql
+global.alasql = require("alasql");
+
 // --------------------------------------------------------------------------
 Vue.config.productionTip = false;
 

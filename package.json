@@ -11,7 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "alasql": "^0.5.8",
     "bootstrap": "^4.4.1",
     "esri-leaflet": "^2.3.3",
     "esri-leaflet-geocoder": "^2.3.2",
