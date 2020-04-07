@@ -1,13 +1,62 @@
 <template>
   <div class="data">
     <!--<img src="../assets/logo.png">-->
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <h1>{{ msg }}</h1>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt />
+        {{ msg }}
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <router-link to="/" class="nav-link">
+              Home
+              <span class="sr-only">(current)</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/data" class="nav-link">Data</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/cek-resiko" class="nav-link">Cek Resiko</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/cegah-kebakaran" class="nav-link">Cegah Kebakaran</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- navbar -->
+    <!-- main container -->
+    <main role="main" class="container">
+      <!-- // -->
+      <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+        <img class="mr-3" src="../assets/logo.png" alt width="48" height="48" />
+        <div class="lh-100">
+          <h6 class="mb-0 text-white lh-100">Bootstrap</h6>
+          <small>Since 2011</small>
         </div>
       </div>
-    </div>
+      <!-- // -->
+      <div
+        class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm"
+        id="mapdata"
+      ></div>
+      <!-- // -->
+    </main>
+    <!-- main container -->
   </div>
 </template>
 
@@ -110,11 +159,38 @@ export default {
     //---------------------------------------------------------------------------------------------------------------------
   }, //end methode
   created: function() {}, //end created
-  mounted: function() {}, //end mounted
+  mounted: function() {
+    //center & zoom map
+    global.mymap = L.map("mapdata").setView([-6.9174639, 107.6191228], 15);
+    //map themes
+    L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
+    // marker icon
+    global.greenIcon = L.icon({
+      iconUrl: require("../assets/images/marker-icon.png"),
+      shadowUrl: require("../assets/images/marker-shadow.png"),
+      iconSize: [25, 41], // size of the icon
+      shadowSize: [41, 41] // size of the shadow
+    });
+    //create marker
+    global.theMarker = L.marker([-6.9174639, 107.6191228], { icon: greenIcon })
+      .addTo(mymap)
+      .bindPopup(
+        "<h2>Selamat datang</h2><hr><p>Silahkan masukan alamat rumah anda, atau klik pada peta dan geser pin dibawah ini.</p>"
+      );
+    // marker 2
+    global.theMarker = L.marker([-6.9009066, 107.6096925], { icon: greenIcon })
+      .addTo(mymap)
+      .bindPopup(
+        "<h2>Selamat datang</h2><hr><p>Silahkan masukan alamat rumah anda, atau klik pada peta dan geser pin dibawah ini.</p>"
+      );
+  }, //end mounted
   updated: function() {} //end updated
 }; //end export
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#mapdata {
+  min-height: 400px;
+}
 </style>

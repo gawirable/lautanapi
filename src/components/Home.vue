@@ -1,8 +1,12 @@
 <template>
   <div class="home">
     <!--<img src="../assets/logo.png">-->
+    <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">
+        <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt />
+        {{ msg }}
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -17,40 +21,24 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <router-link to="/" class="nav-link">
               Home
               <span class="sr-only">(current)</span>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <router-link to="/data" class="nav-link">Data</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <router-link to="/cek-resiko" class="nav-link">Cek Resiko</router-link>
           </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Dropdown link</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <li class="nav-item">
+            <router-link to="/cegah-kebakaran" class="nav-link">Cegah Kebakaran</router-link>
           </li>
         </ul>
       </div>
     </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col"></div>
-      </div>
-    </div>
+    <!-- navbar -->
   </div>
 </template>
 

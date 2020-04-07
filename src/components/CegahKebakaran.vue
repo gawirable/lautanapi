@@ -1,6 +1,44 @@
 <template>
   <div class="cegah_kebakaran">
     <!--<img src="../assets/logo.png">-->
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt />
+        {{ msg }}
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <router-link to="/" class="nav-link">
+              Home
+              <span class="sr-only">(current)</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/data" class="nav-link">Data</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/cek-resiko" class="nav-link">Cek Resiko</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/cegah-kebakaran" class="nav-link">Cegah Kebakaran</router-link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- navbar -->
     <div class="container">
       <div class="row">
         <div class="col">
