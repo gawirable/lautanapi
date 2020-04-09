@@ -52,36 +52,7 @@ export default {
   },
   methods: {}, //end methode
   created: function() {}, //end created
-  mounted: function() {
-    var db = new alasql.Database();
-    db.exec("CREATE TABLE example (a INT, b INT)");
-    db.tables.example.data = [
-      { a: 5, b: 6 },
-      { a: 3, b: 4 }
-    ];
-    var res = db.exec("SELECT avg(b) FROM example");
-    //console.log(res);
-    // alasql
-    //   .promise(
-    //     'SELECT * FROM CSV("static/sample.csv", {headers:true}) where kecamatan="Texas"'
-    //   )
-    //   .then(function(data) {
-    //     console.log(data);
-    //   })
-    //   .catch(function(err) {
-    //     console.log("Error:", err);
-    //   });
-    alasql
-      .promise(
-        'SELECT `Kelurahan` FROM CSV("static/detail-2018.csv", {headers:true}) where Kecamatan="Ujungberung"'
-      )
-      .then(function(data) {
-        console.log(data);
-      })
-      .catch(function(err) {
-        console.log("Error:", err);
-      });
-  }, //end mounted
+  mounted: function() {}, //end mounted
   updated: function() {} //end updated
 }; //end export
 </script>

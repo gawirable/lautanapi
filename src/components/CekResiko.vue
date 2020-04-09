@@ -99,7 +99,8 @@ export default {
       coords_kota: [],
       coords_rev_kota: [],
       coords: [],
-      coords_rev: []
+      coords_rev: [],
+      qres: []
     };
   },
   methods: {
@@ -189,11 +190,38 @@ export default {
     }, //end onlocationfound
     onLocationError: function(e) {
       alert(e.message);
-    }
+    },
     //---------------------------------------------------------------------------------------------------------------------
+    csvquery: function(query) {
+      var data1 = [];
+      alasql
+        .promise(query)
+        .then(function(data) {
+          // console.log(data);
+          //console.log(data.length);
+          // self.qres.push(data);
+          data1 = data;
+        })
+        .catch(function(err) {
+          //console.log("Error:", err);
+          // return self.qres;
+        });
+
+      return data1;
+    }
   }, //end methode
   created: function() {},
   mounted: function() {
+    var self = this;
+    // alasql csv
+    var query = 'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true})';
+    var qkcmtn =
+      'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
+    var qkeltbk =
+      'SELECT TOP 1 `Kelurahan` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
+
+    console.log(this.csvquery(query));
+
     //---------------------------------------------------------------------------------------------------------------------
     //center & zoom map
     global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
