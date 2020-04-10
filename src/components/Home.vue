@@ -1,44 +1,25 @@
 <template>
   <div class="home">
     <!--<img src="../assets/logo.png">-->
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt />
-        {{ msg }}
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <router-link to="/" class="nav-link">
-              Home
-              <span class="sr-only">(current)</span>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/data" class="nav-link">Data</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/cek-resiko" class="nav-link">Cek Resiko</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/cegah-kebakaran" class="nav-link">Cegah Kebakaran</router-link>
-          </li>
-        </ul>
-      </div>
+    <!-- Start: Navigation Dark Clean -->
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark navigation-clean">
+        <div class="container"><a class="navbar-brand" href="#">Bandung Lautan Api</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><router-link to="/" class="nav-link active">Beranda</router-link> </li>
+                    <li class="nav-item" role="presentation"><router-link to="/data" class="nav-link ">Data</router-link></li>
+                    <li class="nav-item" role="presentation"><router-link to="/cek-resiko" class="nav-link ">Cek Resiko</router-link></li>
+                    <li class="nav-item" role="presentation"><router-link to="/cegah-kebakaran" class="nav-link ">Cegah Kebakaran</router-link></li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <!-- navbar -->
+    <!-- End: Navigation Dark Clean -->
+    <div class="container border rounded shadow-sm" style="margin-top: 20px;width: 95%;padding: 20px;">
+        <h3>{{ msg }}</h3>
+        <hr>
+    </div>
   </div>
 </template>
 

@@ -1,45 +1,31 @@
 <template>
   <div class="cek_resiko">
     <!--<img src="../assets/logo.png">-->
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        <img src="../assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt />
-        {{ msg }}
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <router-link to="/" class="nav-link">
-              Home
-              <span class="sr-only">(current)</span>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/data" class="nav-link">Data</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/cek-resiko" class="nav-link">Cek Resiko</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/cegah-kebakaran" class="nav-link">Cegah Kebakaran</router-link>
-          </li>
-        </ul>
+    <!-- Start: Navigation Dark Clean -->
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark navigation-clean">
+      <div class="container"><a class="navbar-brand" href="#">Bandung Lautan Api</a><button data-toggle="collapse"
+          class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item" role="presentation">
+              <router-link to="/" class="nav-link ">Beranda</router-link>
+            </li>
+            <li class="nav-item" role="presentation">
+              <router-link to="/data" class="nav-link ">Data</router-link>
+            </li>
+            <li class="nav-item" role="presentation">
+              <router-link to="/cek-resiko" class="nav-link active">Cek Resiko</router-link>
+            </li>
+            <li class="nav-item" role="presentation">
+              <router-link to="/cegah-kebakaran" class="nav-link ">Cegah Kebakaran</router-link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
-    <!-- navbar -->
-    <div class="container">
+    <!-- End: Navigation Dark Clean -->
+    <!-- <div class="container">
       <div class="row">
         <div class="col">
           <h1>{{ msg }}</h1>
@@ -53,14 +39,8 @@
         <div class="col-md-4">
           <div clas="row">
             <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control basicAutoComplete"
-                autocomplete="off"
-                placeholder="Alamat Rumah"
-                v-model="alamat"
-                v-on:keyup.enter="suggest(alamat)"
-              />
+              <input type="text" class="form-control basicAutoComplete" autocomplete="off" placeholder="Alamat Rumah"
+                v-model="alamat" v-on:keyup.enter="suggest(alamat)" />
               <button type="button" class v-on:click="find_coor">Lokasi Saat ini</button>
             </div>
           </div>
@@ -81,309 +61,334 @@
           </div>
         </div>
       </div>
+    </div> -->
+    <div class="container border rounded shadow-sm" style="margin-top: 20px;width: 95%;padding: 20px;">
+      <h3>{{msg}}</h3>
+      <hr>
+      <div class="row">
+        <div class="col-sm-5">
+          <p>Masukan alamat dan tekan enter untuk mencari lokasi atau langsung tekan tombol biru untuk mengetahui lokasi
+            saat ini.<br></p>
+          <div class="input-group">
+            <div class="input-group-prepend"><span class="input-group-text">Cari Lokasi</span></div><input
+              class="border rounded-0 shadow-sm form-control" type="text" v-model="alamat" v-on:keyup.enter="suggest(alamat)">
+            <div class="input-group-append"><button class="btn btn-primary shadow-sm" type="button" v-on:click="find_coor"><i
+                  class="fas fa-map-marker-alt"></i></button></div>
+          </div>
+          <div class="list-group list-group-flush sugest" style="padding-top: 20px;">
+            <span v-html="render_suggest"></span>
+          </div>
+          <div class="alert alert-warning" role="alert" style="margin-top: 20px;">
+            <h3>{{status}}</h3>
+            <hr>
+            <p>Kota Bandung memiliki 4 wilayah penangulangan kebakaran, lokasi anda berada dekat dengan wilah
+              &lt;wilayah pemadam&gt; dengan jarak &lt;number&gt; Km, estimasi waktu tiba pedamam ke lokasi anda adalah
+              &lt;number&gt; jam.</p>
+          </div>
+        </div>
+        <div class="col-sm-7"><div id="mapid" style="width: 100%; height: 400px;"></div></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: "CekResiko",
-  data() {
-    return {
-      msg: "Lautan Api",
-      alamat: "",
-      render_suggest: "",
-      koordinat: [],
-      status: "",
-      root_kecamatan: [],
-      coords_kota: [],
-      coords_rev_kota: [],
-      coords: [],
-      coords_rev: [],
-      qres: []
-    };
-  },
-  methods: {
-    //---------------------------------------------------------------------------------------------------------------------
-    suggest: function(alamat) {
-      var self = this;
-      self.render_suggest = "";
-      // get address suggest
-      Geocoding.geocode()
-        .text(alamat)
-        .run((err, results, response) => {
-          //console.log(results.results.length);
-          for (let i = 0; i < results.results.length && i < 5; i++) {
-            //console.log(results.results[i].latlng);
-            // reverse geocoding
-            geocodeService
-              .reverse()
-              .latlng(results.results[i].latlng)
-              .run(function(error, result) {
-                if (error) {
-                  return;
-                }
-                self.render_suggest =
-                  self.render_suggest +
-                  '<li id="sgs' +
-                  i +
-                  '" class="list-group-item">' +
-                  result.address.Match_addr +
-                  "</li>";
-                //console.log(self.render_suggest);
-              });
-          }
-        });
-      $(".sugest").show();
+  export default {
+    name: "CekResiko",
+    data() {
+      return {
+        msg: "Lautan Api - Cek Resiko",
+        alamat: "",
+        render_suggest: "",
+        koordinat: [],
+        status: "",
+        root_kecamatan: [],
+        coords_kota: [],
+        coords_rev_kota: [],
+        coords: [],
+        coords_rev: [],
+        qres: []
+      };
     },
-    //---------------------------------------------------------------------------------------------------------------------
-    find_coor: function() {
-      var self = this;
-      mymap.locate({ setView: true, maxZoom: 16 });
-      mymap.on("locationfound", this.onLocationFound);
-      mymap.on("locationerror", this.onLocationError);
-    },
-    onLocationFound: function(e) {
-      var self = this;
-      var str = e.latlng.toString();
-      var curpos = str
-        .substring(7)
-        .replace(")", "")
-        .replace(" ", "")
-        .split(",");
-      var pesan = "";
-
-      //cari kecamatan
-      try {
-        for (let i = 0; i <= self.coords_rev.length; i++) {
-          inside(curpos, self.coords_rev[i]);
-          if (inside(curpos, self.coords_rev[i])) {
-            pesan = "inside polygon: " + i;
-            self.status =
-              "Anda Berada di Kecamatan: " +
-              self.root_kecamatan[i].feature.properties.nama_kecamatan;
-            break;
-          }
-        }
-      } catch (err) {
-        pesan = "Anda Berada diluar kota bandung ";
-        self.status = "Anda Berada diluar kota bandung ";
-      }
-      console.log(pesan);
-
-      //geocoding
-      geocodeService
-        .reverse()
-        .latlng(e.latlng)
-        .run(function(error, result) {
-          if (error) {
-            return;
-          }
-          if (theMarker != undefined) {
-            mymap.removeLayer(theMarker);
-          }
-          theMarker = L.marker(result.latlng, { icon: greenIcon })
-            .addTo(mymap)
-            .bindPopup(result.address.Match_addr)
-            .openPopup();
-        });
-    }, //end onlocationfound
-    onLocationError: function(e) {
-      alert(e.message);
-    },
-    //---------------------------------------------------------------------------------------------------------------------
-    csvquery: function(query) {
-      var data1 = [];
-      alasql
-        .promise(query)
-        .then(function(data) {
-          // console.log(data);
-          //console.log(data.length);
-          // self.qres.push(data);
-          data1 = data;
-        })
-        .catch(function(err) {
-          //console.log("Error:", err);
-          // return self.qres;
-        });
-
-      return data1;
-    }
-  }, //end methode
-  created: function() {},
-  mounted: function() {
-    var self = this;
-    // alasql csv
-    var query = 'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true})';
-    var qkcmtn =
-      'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
-    var qkeltbk =
-      'SELECT TOP 1 `Kelurahan` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
-
-    console.log(this.csvquery(query));
-
-    //---------------------------------------------------------------------------------------------------------------------
-    //center & zoom map
-    global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
-    //map themes
-    L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
-    // marker icon
-    global.greenIcon = L.icon({
-      iconUrl: require("../assets/images/marker-icon.png"),
-      shadowUrl: require("../assets/images/marker-shadow.png"),
-      iconSize: [25, 41], // size of the icon
-      shadowSize: [41, 41] // size of the shadow
-    });
-    //create marker
-    global.theMarker = L.marker([-6.9174639, 107.6191228], { icon: greenIcon })
-      .addTo(mymap)
-      .bindPopup(
-        "<h2>Selamat datang</h2><hr><p>Silahkan masukan alamat rumah anda, atau klik pada peta dan geser pin dibawah ini.</p>"
-      )
-      .openPopup();
-    //---------------------------------------------------------------------------------------------------------------------
-    var self = this;
-    $(".sugest").hide();
-
-    //---------------------------------------------------------------------------------------------------------------------
-    //geojson batas kota
-    $.getJSON("static/map-kota.json", function(data_kota) {
-      // add GeoJSON layer to the map once the file is loaded
-      var datalayer = L.geoJson(data_kota, {
-        onEachFeature: function(feature, featureLayer) {
-          self.coords_kota.push(feature.geometry.coordinates[0]);
-        }
-      });
-
-      //flip coordinate
-      for (let i = 0; i < self.coords_kota.length; i++) {
-        self.coords_rev_kota[i] = [];
-        for (let ii = 0; ii < self.coords_kota[i].length; ii++) {
-          self.coords_rev_kota[i][ii] = self.coords_kota[i][ii].reverse();
-        }
-      }
-      //create polygon kecamatan
-      //var polygon_kota = L.polygon(coords_rev_kota).addTo(mymap);
-    });
-
-    //geojson batas kecamatan
-    $.getJSON("static/map-kecamatan.json", function(data) {
-      // add GeoJSON layer to the map once the file is loadeda
-      var datalayer = L.geoJson(data, {
-        onEachFeature: function(feature, featureLayer) {
-          self.root_kecamatan.push(
-            featureLayer.bindPopup(feature.properties.nama_kecamatan)
-          );
-          self.coords.push(feature.geometry.coordinates[0]);
-        }
-      });
-
-      //flip coordinate
-      for (let i = 0; i < self.coords.length; i++) {
-        self.coords_rev[i] = [];
-        for (let ii = 0; ii < self.coords[i].length; ii++) {
-          self.coords_rev[i][ii] = self.coords[i][ii].reverse();
-        }
-      }
-      //create polygon kecamatan
-      var polygon = L.polygon(self.coords_rev).addTo(mymap);
-    });
-    //---------------------------------------------------------------------------------------------------------------------
-
-    mymap.on("click", function mapClickListen(e) {
-      //cek poly on click
-      var str = e.latlng.toString();
-      var curpos = str
-        .substring(7)
-        .replace(")", "")
-        .replace(" ", "")
-        .split(",");
-      var pesan = "";
-
-      //cari kecamatan
-      try {
-        for (let i = 0; i <= self.coords_rev.length; i++) {
-          inside(curpos, self.coords_rev[i]);
-          if (inside(curpos, self.coords_rev[i])) {
-            pesan = "inside polygon: " + i;
-            self.status =
-              "Anda Berada di Kecamatan: " +
-              self.root_kecamatan[i].feature.properties.nama_kecamatan;
-            break;
-          }
-        }
-      } catch (err) {
-        pesan = "Anda Berada diluar kota bandung ";
-        self.status = "Anda Berada diluar kota bandung ";
-      }
-      console.log(pesan);
-
-      //geocoding
-      geocodeService
-        .reverse()
-        .latlng(e.latlng)
-        .run(function(error, result) {
-          if (error) {
-            return;
-          }
-          if (theMarker != undefined) {
-            mymap.removeLayer(theMarker);
-          }
-          theMarker = L.marker(result.latlng, { icon: greenIcon })
-            .addTo(mymap)
-            .bindPopup(result.address.Match_addr)
-            .openPopup();
-        });
-    }); //end on click
-  }, //end mounted
-  updated: function() {
-    //---------------------------------------------------------------------------------------------------------------------
-    var self = this;
-    for (let i = 0; i < 5; i++) {
-      $("#sgs" + i).click(function() {
-        self.alamat = $("#sgs" + i).text();
+    methods: {
+      //---------------------------------------------------------------------------------------------------------------------
+      suggest: function (alamat) {
+        var self = this;
+        self.render_suggest = "";
+        // get address suggest
         Geocoding.geocode()
-          .text(self.alamat)
+          .text(alamat)
           .run((err, results, response) => {
-            self.koordinat = results.results[0].latlng;
+            //console.log(results.results.length);
+            for (let i = 0; i < results.results.length && i < 5; i++) {
+              //console.log(results.results[i].latlng);
+              // reverse geocoding
+              geocodeService
+                .reverse()
+                .latlng(results.results[i].latlng)
+                .run(function (error, result) {
+                  if (error) {
+                    return;
+                  }
+                  self.render_suggest =
+                    self.render_suggest +
+                    '<a id="sgs' + i + '" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"><span>' +
+                    result.address.Match_addr +
+                    '</span><span class="badge badge-primary"><i class="fas fa-location-arrow"></i></span></a>';
+                  //console.log(self.render_suggest);
+                });
+            }
+          });
+        $(".sugest").show();
+      },
+      //---------------------------------------------------------------------------------------------------------------------
+      find_coor: function () {
+        var self = this;
+        mymap.locate({ setView: true, maxZoom: 16 });
+        mymap.on("locationfound", this.onLocationFound);
+        mymap.on("locationerror", this.onLocationError);
+      },
+      onLocationFound: function (e) {
+        var self = this;
+        var str = e.latlng.toString();
+        var curpos = str
+          .substring(7)
+          .replace(")", "")
+          .replace(" ", "")
+          .split(",");
+        var pesan = "";
+
+        //cari kecamatan
+        try {
+          for (let i = 0; i <= self.coords_rev.length; i++) {
+            inside(curpos, self.coords_rev[i]);
+            if (inside(curpos, self.coords_rev[i])) {
+              pesan = "inside polygon: " + i;
+              self.status =
+                "Anda Berada di Kecamatan: " +
+                self.root_kecamatan[i].feature.properties.nama_kecamatan;
+              break;
+            }
+          }
+        } catch (err) {
+          pesan = "Anda Berada diluar kota bandung ";
+          self.status = "Anda Berada diluar kota bandung ";
+        }
+        console.log(pesan);
+
+        //geocoding
+        geocodeService
+          .reverse()
+          .latlng(e.latlng)
+          .run(function (error, result) {
+            if (error) {
+              return;
+            }
             if (theMarker != undefined) {
               mymap.removeLayer(theMarker);
             }
-            theMarker = L.marker(results.results[0].latlng, { icon: greenIcon })
+            theMarker = L.marker(result.latlng, { icon: greenIcon })
               .addTo(mymap)
-              .bindPopup(self.alamat)
+              .bindPopup(result.address.Match_addr)
               .openPopup();
-            self.render_suggest = "";
-            //cari kecamatan
-            var str = results.results[0].latlng.toString();
-            var curpos = str
-              .substring(7)
-              .replace(")", "")
-              .replace(" ", "")
-              .split(",");
-            var pesan = "";
-
-            try {
-              for (let i = 0; i <= self.coords_rev.length; i++) {
-                inside(curpos, self.coords_rev[i]);
-                if (inside(curpos, self.coords_rev[i])) {
-                  pesan = "inside polygon: " + i;
-                  self.status =
-                    "Anda Berada di Kecamatan: " +
-                    self.root_kecamatan[i].feature.properties.nama_kecamatan;
-                  break;
-                }
-              }
-            } catch (err) {
-              pesan = "Anda Berada diluar kota bandung ";
-              self.status = "Anda Berada diluar kota bandung ";
-            }
-            console.log(pesan);
           });
+      }, //end onlocationfound
+      onLocationError: function (e) {
+        alert(e.message);
+      },
+      //---------------------------------------------------------------------------------------------------------------------
+      csvquery: function (query) {
+        var data1 = [];
+        alasql
+          .promise(query)
+          .then(function (data) {
+            // console.log(data);
+            //console.log(data.length);
+            // self.qres.push(data);
+            data1 = data;
+          })
+          .catch(function (err) {
+            //console.log("Error:", err);
+            // return self.qres;
+          });
+
+        return data1;
+      }
+    }, //end methode
+    created: function () { },
+    mounted: function () {
+      var self = this;
+      // alasql csv
+      var query = 'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true})';
+      var qkcmtn =
+        'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
+      var qkeltbk =
+        'SELECT TOP 1 `Kelurahan` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
+
+      console.log(this.csvquery(query));
+
+      //---------------------------------------------------------------------------------------------------------------------
+      //center & zoom map
+      global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
+      //map themes
+      L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
+      // marker icon
+      global.greenIcon = L.icon({
+        iconUrl: require("../assets/images/marker-icon.png"),
+        shadowUrl: require("../assets/images/marker-shadow.png"),
+        iconSize: [25, 41], // size of the icon
+        shadowSize: [41, 41] // size of the shadow
       });
-    } //end for
-  } //end updated
-}; //end export
+      //create marker
+      global.theMarker = L.marker([-6.9174639, 107.6191228], { icon: greenIcon })
+        .addTo(mymap)
+        .bindPopup(
+          "<h2>Selamat datang</h2><hr><p>Silahkan masukan alamat rumah anda, atau klik pada peta dan geser pin dibawah ini.</p>"
+        )
+        .openPopup();
+      //---------------------------------------------------------------------------------------------------------------------
+      var self = this;
+      $(".sugest").hide();
+
+      //---------------------------------------------------------------------------------------------------------------------
+      //geojson batas kota
+      $.getJSON("static/map-kota.json", function (data_kota) {
+        // add GeoJSON layer to the map once the file is loaded
+        var datalayer = L.geoJson(data_kota, {
+          onEachFeature: function (feature, featureLayer) {
+            self.coords_kota.push(feature.geometry.coordinates[0]);
+          }
+        });
+
+        //flip coordinate
+        for (let i = 0; i < self.coords_kota.length; i++) {
+          self.coords_rev_kota[i] = [];
+          for (let ii = 0; ii < self.coords_kota[i].length; ii++) {
+            self.coords_rev_kota[i][ii] = self.coords_kota[i][ii].reverse();
+          }
+        }
+        //create polygon kecamatan
+        //var polygon_kota = L.polygon(coords_rev_kota).addTo(mymap);
+      });
+
+      //geojson batas kecamatan
+      $.getJSON("static/map-kecamatan.json", function (data) {
+        // add GeoJSON layer to the map once the file is loadeda
+        var datalayer = L.geoJson(data, {
+          onEachFeature: function (feature, featureLayer) {
+            self.root_kecamatan.push(
+              featureLayer.bindPopup(feature.properties.nama_kecamatan)
+            );
+            self.coords.push(feature.geometry.coordinates[0]);
+          }
+        });
+
+        //flip coordinate
+        for (let i = 0; i < self.coords.length; i++) {
+          self.coords_rev[i] = [];
+          for (let ii = 0; ii < self.coords[i].length; ii++) {
+            self.coords_rev[i][ii] = self.coords[i][ii].reverse();
+          }
+        }
+        //create polygon kecamatan
+        var polygon = L.polygon(self.coords_rev).addTo(mymap);
+      });
+      //---------------------------------------------------------------------------------------------------------------------
+
+      mymap.on("click", function mapClickListen(e) {
+        //cek poly on click
+        var str = e.latlng.toString();
+        var curpos = str
+          .substring(7)
+          .replace(")", "")
+          .replace(" ", "")
+          .split(",");
+        var pesan = "";
+
+        //cari kecamatan
+        try {
+          for (let i = 0; i <= self.coords_rev.length; i++) {
+            inside(curpos, self.coords_rev[i]);
+            if (inside(curpos, self.coords_rev[i])) {
+              pesan = "inside polygon: " + i;
+              self.status =
+                "Anda Berada di Kecamatan: " +
+                self.root_kecamatan[i].feature.properties.nama_kecamatan;
+              break;
+            }
+          }
+        } catch (err) {
+          pesan = "Anda Berada diluar kota bandung ";
+          self.status = "Anda Berada diluar kota bandung ";
+        }
+        console.log(pesan);
+
+        //geocoding
+        geocodeService
+          .reverse()
+          .latlng(e.latlng)
+          .run(function (error, result) {
+            if (error) {
+              return;
+            }
+            if (theMarker != undefined) {
+              mymap.removeLayer(theMarker);
+            }
+            theMarker = L.marker(result.latlng, { icon: greenIcon })
+              .addTo(mymap)
+              .bindPopup(result.address.Match_addr)
+              .openPopup();
+          });
+      }); //end on click
+    }, //end mounted
+    updated: function () {
+      //---------------------------------------------------------------------------------------------------------------------
+      var self = this;
+      for (let i = 0; i < 5; i++) {
+        $("#sgs" + i).click(function () {
+          self.alamat = $("#sgs" + i).text();
+          Geocoding.geocode()
+            .text(self.alamat)
+            .run((err, results, response) => {
+              self.koordinat = results.results[0].latlng;
+              if (theMarker != undefined) {
+                mymap.removeLayer(theMarker);
+              }
+              theMarker = L.marker(results.results[0].latlng, { icon: greenIcon })
+                .addTo(mymap)
+                .bindPopup(self.alamat)
+                .openPopup();
+              self.render_suggest = "";
+              //cari kecamatan
+              var str = results.results[0].latlng.toString();
+              var curpos = str
+                .substring(7)
+                .replace(")", "")
+                .replace(" ", "")
+                .split(",");
+              var pesan = "";
+
+              try {
+                for (let i = 0; i <= self.coords_rev.length; i++) {
+                  inside(curpos, self.coords_rev[i]);
+                  if (inside(curpos, self.coords_rev[i])) {
+                    pesan = "inside polygon: " + i;
+                    self.status =
+                      "Anda Berada di Kecamatan: " +
+                      self.root_kecamatan[i].feature.properties.nama_kecamatan;
+                    break;
+                  }
+                }
+              } catch (err) {
+                pesan = "Anda Berada diluar kota bandung ";
+                self.status = "Anda Berada diluar kota bandung ";
+              }
+              console.log(pesan);
+            });
+        });
+      } //end for
+    } //end updated
+  }; //end export
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

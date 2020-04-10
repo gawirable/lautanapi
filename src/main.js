@@ -12,6 +12,12 @@ global.jQuery = require("jquery");
 import "bootstrap/dist/css/bootstrap.css";
 import "popper.js/dist/esm/popper.js";
 import "bootstrap/dist/js/bootstrap.js";
+// bootstrap themes and template
+import "../static/plugin/template/css/Navigation-Dark-Clean.css"
+import "../static/plugin/template/css/styles.css"
+
+// install font-awesome
+import "@fortawesome/fontawesome-free/css/all.css"
 
 // import leaflet js
 require("../node_modules/leaflet/dist/leaflet.css");
