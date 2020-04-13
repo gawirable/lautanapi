@@ -34,9 +34,10 @@
             saat ini.<br></p>
           <div class="input-group">
             <div class="input-group-prepend"><span class="input-group-text">Cari Lokasi</span></div><input
-              class="border rounded-0 shadow-sm form-control" type="text" v-model="alamat" v-on:keyup.enter="suggest(alamat)">
-            <div class="input-group-append"><button class="btn btn-primary shadow-sm" type="button" v-on:click="find_coor"><i
-                  class="fas fa-map-marker-alt"></i></button></div>
+              class="border rounded-0 shadow-sm form-control" type="text" v-model="alamat"
+              v-on:keyup.enter="suggest(alamat)">
+            <div class="input-group-append"><button class="btn btn-primary shadow-sm" type="button"
+                v-on:click="find_coor"><i class="fas fa-map-marker-alt"></i></button></div>
           </div>
           <div class="list-group list-group-flush sugest" style="padding-top: 20px;">
             <span v-html="render_suggest"></span>
@@ -44,12 +45,13 @@
           <div class="alert alert-warning" role="alert" style="margin-top: 20px;">
             <h3>{{status}}</h3>
             <hr>
-            <p>Kota Bandung memiliki 4 wilayah penangulangan kebakaran, lokasi anda berada dekat dengan wilah
-              &lt;wilayah pemadam&gt; dengan jarak &lt;number&gt; Km, estimasi waktu tiba pedamam ke lokasi anda adalah
-              &lt;number&gt; jam.</p>
+            <p>Selama tahun 2018 kecamatan {{rskecamatan}} telah terjadi {{jml_kebakaran18}} kebakaran dan {{jml_kebakaran19}} kebakaran terjadi
+              di tahun 2019, dengan durasi kebakaran terlama {{durasi_kebakaran}} Menit, dengan rata-rata durasi selama {{avg_durasi_kebakaran}} Menit. {{top_penyebab}} menjadi penyebab kebakaran yang paling banyak.</p>
           </div>
         </div>
-        <div class="col-sm-7"><div id="mapid" style="width: 100%; height: 400px;"></div></div>
+        <div class="col-sm-7">
+          <div id="mapid" style="width: 100%; height: 400px;"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -70,7 +72,13 @@
         coords_rev_kota: [],
         coords: [],
         coords_rev: [],
-        qres: []
+        roots_data: {},
+        jml_kebakaran18: 0,
+        jml_kebakaran19: 0,
+        durasi_kebakaran: 0,
+        avg_durasi_kebakaran: 0,
+        top_penyebab: "",
+        rskecamatan:"",
       };
     },
     methods: {
@@ -160,31 +168,72 @@
         alert(e.message);
       },
       //---------------------------------------------------------------------------------------------------------------------
-      csvquery: function (query) {
-        alasql
-          .promise(query)
-          .then(function (data) {
-            console.log(data);
-            //console.log(data.length);
-          })
-          .catch(function (err) {
-            console.log("Error:", err);
-            // return self.qres;
-          });
+      csvquery: function (kecamatan) {
+        // alasql csv
+        var self = this;
+        var query =
+          'SELECT `*` FROM CSV("static/fix-detail-1819.csv", {headers:true})';
+        var qkcmtn18 =
+          'SELECT `*` FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and year(Tanggal) = 2018';
+        var qkcmtn19 =
+          'SELECT `*` FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and year(Tanggal) = 2019';
+        var qmaxdurasi =
+          'SELECT MAX(`Durasi`) as durasi FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
+          var qavgdurasi =
+          'SELECT AVG(`Durasi`) as avgdurasi FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
+        var qtoppenyebab =
+          'SELECT TOP 1 `Penyebab_Kebakaran` as toppenyebab FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
+        for (let i = 1; i <= 5; i++) {
+          if (i == 1) {
+            alasql.promise(qkcmtn18).then(function (data) {
+              // console.log( typeof data);
+              self.jml_kebakaran18 = data.length;
+            }).catch(function (err) {
+              console.log("Error:", err);
+            });
+          }
+          else if (i == 2) {
+            alasql.promise(qkcmtn19).then(function (data) {
+              // console.log( typeof data);
+              self.jml_kebakaran19 = data.length;
+            }).catch(function (err) {
+              console.log("Error:", err);
+            });
+          }
+          else if (i == 3) {
+            alasql.promise(qmaxdurasi).then(function (data) {
+              // console.log( typeof data);
+              self.durasi_kebakaran = data[0].durasi;
+            }).catch(function (err) {
+              console.log("Error:", err);
+            });
+          }
+          else if (i == 4) {
+            alasql.promise(qavgdurasi).then(function (data) {
+              // console.log( typeof data);
+              self.avg_durasi_kebakaran = data[0].avgdurasi.toFixed(2);
+            }).catch(function (err) {
+              console.log("Error:", err);
+            });
+          }
+          else if (i == 5) {
+            alasql.promise(qtoppenyebab).then(function (data) {
+              // console.log( typeof data);
+              self.top_penyebab = data[0].toppenyebab;
+            }).catch(function (err) {
+              console.log("Error:", err);
+            });
+          }
+
+        }
+        return
       }
     }, //end methode
-    created: function () { },
+    created: function () {
+      var self = this;
+    },
     mounted: function () {
       var self = this;
-      // alasql csv
-      var query = 'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true})';
-      var qkcmtn =
-        'SELECT `*` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
-      var qkeltbk =
-        'SELECT TOP 1 `Kelurahan` FROM CSV("static/detail-1819.csv", {headers:true}) where Kecamatan="Coblong"';
-
-      console.log(this.csvquery(query));
-
       //---------------------------------------------------------------------------------------------------------------------
       //center & zoom map
       global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
@@ -269,9 +318,8 @@
             inside(curpos, self.coords_rev[i]);
             if (inside(curpos, self.coords_rev[i])) {
               pesan = "inside polygon: " + i;
-              self.status =
-                "Anda Berada di Kecamatan: " +
-                self.root_kecamatan[i].feature.properties.nama_kecamatan;
+              self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
+              self.rskecamatan = self.root_kecamatan[i].feature.properties.nama_kecamatan
               break;
             }
           }
@@ -279,6 +327,7 @@
           pesan = "Anda Berada diluar kota bandung ";
           self.status = "Anda Berada diluar kota bandung ";
         }
+        self.csvquery(self.rskecamatan);
         console.log(pesan);
 
         //geocoding
@@ -334,6 +383,7 @@
                     self.status =
                       "Anda Berada di Kecamatan: " +
                       self.root_kecamatan[i].feature.properties.nama_kecamatan;
+                      // this.csvquery(self.root_kecamatan[i].feature.properties.nama_kecamatan);
                     break;
                   }
                 }
@@ -341,6 +391,7 @@
                 pesan = "Anda Berada diluar kota bandung ";
                 self.status = "Anda Berada diluar kota bandung ";
               }
+              self.csvquery(self.rskecamatan);
               console.log(pesan);
             });
         });
