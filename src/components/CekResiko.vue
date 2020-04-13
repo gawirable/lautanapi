@@ -25,43 +25,6 @@
       </div>
     </nav>
     <!-- End: Navigation Dark Clean -->
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col">
-          <h1>{{ msg }}</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8">
-          <div id="mapid" style="width: 100%; height: 400px;"></div>
-          <div id="mapbox" style="width: 100%; height: 400px;"></div>
-        </div>
-        <div class="col-md-4">
-          <div clas="row">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control basicAutoComplete" autocomplete="off" placeholder="Alamat Rumah"
-                v-model="alamat" v-on:keyup.enter="suggest(alamat)" />
-              <button type="button" class v-on:click="find_coor">Lokasi Saat ini</button>
-            </div>
-          </div>
-          <div class="row suges">
-            <div class="col-md-12">
-              <ul class="list-group list-group-flush sugest">
-                <span v-html="render_suggest"></span>
-              </ul>
-            </div>
-          </div>
-          <div clas="row">
-            <div class="jumbotron">
-              <h5 class="display-5">Cek Resiko Kebakaran</h5>
-              <hr class="my-4" />
-              <p>{{status}}</p>
-              <hr class="my-4" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="container border rounded shadow-sm" style="margin-top: 20px;width: 95%;padding: 20px;">
       <h3>{{msg}}</h3>
       <hr>
@@ -198,21 +161,16 @@
       },
       //---------------------------------------------------------------------------------------------------------------------
       csvquery: function (query) {
-        var data1 = [];
         alasql
           .promise(query)
           .then(function (data) {
-            // console.log(data);
+            console.log(data);
             //console.log(data.length);
-            // self.qres.push(data);
-            data1 = data;
           })
           .catch(function (err) {
-            //console.log("Error:", err);
+            console.log("Error:", err);
             // return self.qres;
           });
-
-        return data1;
       }
     }, //end methode
     created: function () { },
