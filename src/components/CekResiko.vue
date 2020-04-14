@@ -279,9 +279,9 @@
       });
 
       //geojson batas kecamatan
-      $.getJSON("static/map-kecamatan.json", function (data) {
+      $.getJSON("static/map-kecamatan.json", function (data_kecamatan) {
         // add GeoJSON layer to the map once the file is loadeda
-        var datalayer = L.geoJson(data, {
+        var datalayer = L.geoJson(data_kecamatan, {
           onEachFeature: function (feature, featureLayer) {
             self.root_kecamatan.push(
               featureLayer.bindPopup(feature.properties.nama_kecamatan)
