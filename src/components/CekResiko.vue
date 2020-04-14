@@ -380,10 +380,8 @@
                   inside(curpos, self.coords_rev[i]);
                   if (inside(curpos, self.coords_rev[i])) {
                     pesan = "inside polygon: " + i;
-                    self.status =
-                      "Anda Berada di Kecamatan: " +
-                      self.root_kecamatan[i].feature.properties.nama_kecamatan;
-                      // this.csvquery(self.root_kecamatan[i].feature.properties.nama_kecamatan);
+                    self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
+                    self.rskecamatan = self.root_kecamatan[i].feature.properties.nama_kecamatan
                     break;
                   }
                 }
