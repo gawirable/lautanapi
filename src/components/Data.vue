@@ -70,7 +70,7 @@
         iconSize: [25, 41], // size of the icon
         shadowSize: [41, 41] // size of the shadow
       });
-      //geojson batas kecamatan
+      //geojson data hidran
       $.getJSON("static/map-hidran.json", function (data_hidran) {
         // add GeoJSON layer to the map once the file is loadeda
         var datalayer = L.geoJson(data_hidran, {
