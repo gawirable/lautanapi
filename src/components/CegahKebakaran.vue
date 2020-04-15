@@ -75,13 +75,16 @@
               wilayah = "Kantor Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung";
             }
             else if (self.index_uptd == 1) {
-              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah ";
+              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Barat";
             }
             else if (self.index_uptd == 2) {
-              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah";
+              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Timur";
             }
             else if (self.index_uptd == 3) {
-              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah";
+              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Utara";
+            }
+            else if (self.index_uptd == 4) {
+              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Selatan";
             }
             global.theMarker = L.marker(result.latlng, { icon: pin })
               .addTo(mymap)
@@ -192,6 +195,13 @@
             .addTo(mymap)
             .bindPopup(
               "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Utara</h6> Alamat: " + self.root_uptd[i] + "</p>"
+            );
+          }
+          else if (i==4) {
+            global.theMarker = L.marker(self.coords[i], { icon: uptd })
+            .addTo(mymap)
+            .bindPopup(
+              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Selatan</h6> Alamat: " + self.root_uptd[i] + "</p>"
             );
           }
           

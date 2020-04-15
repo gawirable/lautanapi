@@ -72,7 +72,7 @@
         //create marker
         for (let i = 0; i < self.coords.length; i++) {
           // marker hijau 
-          if (i == 24 || i == 30 || i == 93) {
+          if (i == 22 || i == 28 || i == 93) {
             global.theMarker = L.marker(self.coords[i], { icon: hidranaktif })
           .addTo(mymap)
           .bindPopup(

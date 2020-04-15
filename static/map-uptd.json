@@ -1,1 +1,105 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"marker-size":"medium","marker-symbol":"","marker-color":"#fd0000","alamat":"Jalan Sukabumi no 17","uptd":"Kantor Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung"},"geometry":{"type":"Point","coordinates":[107.6319214,-6.9168232]}},{"type":"Feature","properties":{"marker-color":"#fd0000","marker-size":"medium","marker-symbol":"","alamat":"Jalan Srigunting Raya no 1","uptd":"UPT Dinas Pemadam Kebakaran Bandung Barat"},"geometry":{"type":"Point","coordinates":[107.5729552,-6.9069835]}},{"type":"Feature","properties":{"marker-size":"medium","marker-color":"#fd0000","alamat":"Jalan Aria Utama 7","marker-symbol":"","uptd":"UPT Dinas Pemadam Kebakaran Bandung Timur"},"geometry":{"type":"Point","coordinates":[107.672575,-6.9422552]}},{"type":"Feature","properties":{"marker-size":"medium","marker-symbol":"","marker-color":"#fd0000","alamat":"Jalan Sindang Sirna 40","uptd":"UPT Dinas Pemadam Kebakaran Bandung Utara"},"geometry":{"type":"Point","coordinates":[107.5910415,-6.8776751]}},{"type":"Feature","properties":{"marker-color":"#fd0000","alamat":"Jalan Caringin 103","uptd":"UPT Dinas Pemadam Kebakaran Bandung Selatan","marker-size":"medium"},"geometry":{"type":"Point","coordinates":[107.5829416,-6.9457816]}}]}
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-size": "medium",
+                "marker-symbol": "",
+                "marker-color": "#fd0000",
+                "alamat": "Jalan Sukabumi no 17",
+                "uptd": "Kantor Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    107.6319214,
+                    -6.9168232
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#fd0000",
+                "marker-size": "medium",
+                "marker-symbol": "",
+                "alamat": "Jalan Srigunting Raya no 1",
+                "uptd": "UPT Dinas Pemadam Kebakaran Bandung Barat"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    107.5729552,
+                    -6.9069835
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-size": "medium",
+                "marker-color": "#fd0000",
+                "alamat": "Jalan Aria Utama 7",
+                "marker-symbol": "",
+                "uptd": "UPT Dinas Pemadam Kebakaran Bandung Timur"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    107.672575,
+                    -6.9422552
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-size": "medium",
+                "marker-symbol": "",
+                "marker-color": "#fd0000",
+                "alamat": "Jalan Sindang Sirna 40",
+                "uptd": "UPT Dinas Pemadam Kebakaran Bandung Utara"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    107.5910415,
+                    -6.8776751
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#fd0000",
+                "alamat": "Jalan Caringin 103",
+                "uptd": "UPT Dinas Pemadam Kebakaran Bandung Selatan",
+                "marker-size": "medium"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    107.5829416,
+                    -6.9457816
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "marker-color": "#fd0000",
+                "alamat": "Jalan Srigunting Raya no 1",
+                "uptd": "UPT Dinas Pemadam Kebakaran Bandung Barat",
+                "marker-size": "medium"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    107.5377858,
+                    -6.9069786
+                ]
+            }
+        }
+    ]
+}
