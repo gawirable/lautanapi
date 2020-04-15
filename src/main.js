@@ -7,6 +7,32 @@ import router from "./router";
 // import jquery
 global.$ = require("jquery");
 global.jQuery = require("jquery");
+// register icon marker
+global.hidrannon = L.icon({
+  iconUrl: require("../static/icon/hidran-non.png"),
+  iconSize: [14, 32.5], // size of the icon
+  popupAnchor:  [0, -15],
+});
+global.hidranaktif = L.icon({
+  iconUrl: require("../static/icon/hidran-aktif.png"),
+  iconSize: [14, 32.5], // size of the icon
+  popupAnchor:  [0, -15],
+});
+global.pin = L.icon({
+  iconUrl: require("../static/icon/pin.png"),
+  iconSize: [37, 65], // size of the icon
+  popupAnchor:  [5, -35],
+});
+global.uptd = L.icon({
+  iconUrl: require("../static/icon/uptd.png"),
+  iconSize: [65, 56], // size of the icon
+  popupAnchor:  [5, -35],
+});
+global.pusat = L.icon({
+  iconUrl: require("../static/icon/pusat.png"),
+  iconSize: [52, 65], // size of the icon
+  popupAnchor:  [5, -35],
+});
 
 // import bootstrap & popper
 import "bootstrap/dist/css/bootstrap.css";

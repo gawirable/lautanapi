@@ -42,11 +42,14 @@
           <div class="list-group list-group-flush sugest" style="padding-top: 20px;">
             <span v-html="render_suggest"></span>
           </div>
-          <div class="alert alert-warning" role="alert" style="margin-top: 20px;">
+          <div id="warning" class="alert alert-warning" role="alert" style="margin-top: 20px;">
             <h3>{{status}}</h3>
             <hr>
-            <p>Selama tahun 2018 kecamatan {{rskecamatan}} telah terjadi {{jml_kebakaran18}} kebakaran dan {{jml_kebakaran19}} kebakaran terjadi
-              di tahun 2019, dengan durasi kebakaran terlama {{durasi_kebakaran}} Menit, dengan rata-rata durasi selama {{avg_durasi_kebakaran}} Menit. {{top_penyebab}} menjadi penyebab kebakaran yang paling banyak.</p>
+            <p id="warningmsg">Selama tahun 2018 kecamatan {{rskecamatan}} telah terjadi {{jml_kebakaran18}} kebakaran
+              dan
+              {{jml_kebakaran19}} kebakaran terjadi
+              di tahun 2019, dengan durasi kebakaran terlama {{durasi_kebakaran}} Menit, dengan rata-rata durasi selama
+              {{avg_durasi_kebakaran}} Menit. {{top_penyebab}} menjadi penyebab kebakaran yang paling banyak.</p>
           </div>
         </div>
         <div class="col-sm-7">
@@ -78,7 +81,7 @@
         durasi_kebakaran: 0,
         avg_durasi_kebakaran: 0,
         top_penyebab: "",
-        rskecamatan:"",
+        rskecamatan: "",
       };
     },
     methods: {
@@ -158,7 +161,7 @@
             if (theMarker != undefined) {
               mymap.removeLayer(theMarker);
             }
-            theMarker = L.marker(result.latlng, { icon: greenIcon })
+            theMarker = L.marker(result.latlng, { icon: pin })
               .addTo(mymap)
               .bindPopup(result.address.Match_addr)
               .openPopup();
@@ -179,10 +182,10 @@
           'SELECT `*` FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and year(Tanggal) = 2019';
         var qmaxdurasi =
           'SELECT MAX(`Durasi`) as durasi FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
-          var qavgdurasi =
+        var qavgdurasi =
           'SELECT AVG(`Durasi`) as avgdurasi FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
         var qtoppenyebab =
-          'SELECT TOP 1 `Penyebab_Kebakaran` as toppenyebab FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
+          'SELECT TOP 1 `Penyebab_Kebakaran` as toppenyebab FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and Penyebab_Kebakaran !="Dalam Penyelidikan" and Penyebab_Kebakaran!=0';
         for (let i = 1; i <= 5; i++) {
           if (i == 1) {
             alasql.promise(qkcmtn18).then(function (data) {
@@ -234,20 +237,15 @@
     },
     mounted: function () {
       var self = this;
+      $("#warning").hide();
       //---------------------------------------------------------------------------------------------------------------------
       //center & zoom map
       global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
       //map themes
       L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
-      // marker icon
-      global.greenIcon = L.icon({
-        iconUrl: require("../assets/images/marker-icon.png"),
-        shadowUrl: require("../assets/images/marker-shadow.png"),
-        iconSize: [25, 41], // size of the icon
-        shadowSize: [41, 41] // size of the shadow
-      });
+
       //create marker
-      global.theMarker = L.marker([-6.9174639, 107.6191228], { icon: greenIcon })
+      global.theMarker = L.marker([-6.9174639, 107.6191228], { icon: pin })
         .addTo(mymap)
         .bindPopup(
           "<h2>Selamat datang</h2><hr><p>Silahkan masukan alamat rumah anda, atau klik pada peta dan geser pin dibawah ini.</p>"
@@ -298,7 +296,7 @@
           }
         }
         //create polygon kecamatan
-        var polygon = L.polygon(self.coords_rev).addTo(mymap);
+        // var polygon = L.polygon(self.coords_rev).addTo(mymap);
       });
       //---------------------------------------------------------------------------------------------------------------------
 
@@ -318,6 +316,8 @@
             inside(curpos, self.coords_rev[i]);
             if (inside(curpos, self.coords_rev[i])) {
               pesan = "inside polygon: " + i;
+              $("#warning").show();
+              $("#warningmsg").show();
               self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
               self.rskecamatan = self.root_kecamatan[i].feature.properties.nama_kecamatan
               break;
@@ -325,10 +325,11 @@
           }
         } catch (err) {
           pesan = "Anda Berada diluar kota bandung ";
+          $("#warning").show();
+          $("#warningmsg").hide();
           self.status = "Anda Berada diluar kota bandung ";
         }
         self.csvquery(self.rskecamatan);
-        console.log(pesan);
 
         //geocoding
         geocodeService
@@ -341,7 +342,7 @@
             if (theMarker != undefined) {
               mymap.removeLayer(theMarker);
             }
-            theMarker = L.marker(result.latlng, { icon: greenIcon })
+            theMarker = L.marker(result.latlng, { icon: pin })
               .addTo(mymap)
               .bindPopup(result.address.Match_addr)
               .openPopup();
@@ -361,7 +362,7 @@
               if (theMarker != undefined) {
                 mymap.removeLayer(theMarker);
               }
-              theMarker = L.marker(results.results[0].latlng, { icon: greenIcon })
+              theMarker = L.marker(results.results[0].latlng, { icon: pin })
                 .addTo(mymap)
                 .bindPopup(self.alamat)
                 .openPopup();
@@ -380,6 +381,8 @@
                   inside(curpos, self.coords_rev[i]);
                   if (inside(curpos, self.coords_rev[i])) {
                     pesan = "inside polygon: " + i;
+                    $("#warning").show();
+                    $("#warningmsg").show();
                     self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
                     self.rskecamatan = self.root_kecamatan[i].feature.properties.nama_kecamatan
                     break;
@@ -387,10 +390,11 @@
                 }
               } catch (err) {
                 pesan = "Anda Berada diluar kota bandung ";
+                $("#warning").show();
+                $("#warningmsg").hide();
                 self.status = "Anda Berada diluar kota bandung ";
               }
               self.csvquery(self.rskecamatan);
-              console.log(pesan);
             });
         });
       } //end for

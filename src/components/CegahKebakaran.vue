@@ -29,18 +29,9 @@
       <h3>{{ msg }}</h3>
       <hr>
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-12">
           <button class="btn btn-primary shadow-sm btn-block" type="button" v-on:click="find_coor">Cek lokasi saat ini
             <i class="fas fa-map-marker-alt"></i></button>
-          <div class="alert alert-warning" role="alert" style="margin-top: 20px;">
-            <h3>header</h3>
-            <hr>
-            <p>Selama tahun 2018 kecamatan telah terjadi kebakaran dan kebakaran terjadi
-              di tahun 2019, dengan durasi kebakaran terlama Menit, dengan rata-rata durasi selama Menit. menjadi
-              penyebab kebakaran yang paling banyak.</p>
-          </div>
-        </div>
-        <div class="col-sm-7">
           <div id="mapcegahkebakaran" width="100%" height="400"></div>
         </div>
       </div>
@@ -79,10 +70,23 @@
             if (error) {
               return;
             }
-            global.theMarker = L.marker(result.latlng, { icon: greenIcon })
+            var wilayah = "";
+            if (self.index_uptd == 0) {
+              wilayah = "Kantor Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung";
+            }
+            else if (self.index_uptd == 1) {
+              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah ";
+            }
+            else if (self.index_uptd == 2) {
+              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah";
+            }
+            else if (self.index_uptd == 3) {
+              wilayah = "Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah";
+            }
+            global.theMarker = L.marker(result.latlng, { icon: pin })
               .addTo(mymap)
               .bindPopup(
-                "<p>Lokasi saat ini: " + result.address.Match_addr + " jarak terdekat anda dengan UPTD: "+self.index_uptd +", dengan jarak: "+ self.res_jarak.toFixed(2) +" Km</p>"
+                "<p><h6>Lokasi saat ini:</h6> " + result.address.Match_addr + "<hr>Anda berada dekat dengan "+wilayah +". Dengan jarak "+ self.res_jarak.toFixed(2) +" Km" + ", Jika mobil pemadam kebakaran melaju dengan kecepatan 50 Km/h Pemadam kebakaran akan tiba dilokasi anda dalam waktu "+ (self.res_jarak.toFixed(2)/50)*60 +" Menit</p>"
               ).openPopup();
           });
         // console.log(self.coords[0][1]);
@@ -144,16 +148,10 @@
     mounted: function () {
       var self = this;
       //center & zoom map
-      global.mymap = L.map("mapcegahkebakaran").setView([-6.9174639, 107.6191228], 11);
+      global.mymap = L.map("mapcegahkebakaran").setView([-6.9174639, 107.6191228], 13);
       //map themes
       L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
-      // marker icon
-      global.greenIcon = L.icon({
-        iconUrl: require("../assets/images/marker-icon.png"),
-        shadowUrl: require("../assets/images/marker-shadow.png"),
-        iconSize: [25, 41], // size of the icon
-        shadowSize: [41, 41] // size of the shadow
-      });
+
       // geojson data hidran
       $.getJSON("static/map-uptd.json", function (data_uptd) {
         // add GeoJSON layer to the map once the file is loadeda
@@ -168,11 +166,35 @@
 
         // create marker
         for (let i = 0; i < self.coords.length; i++) {
-          global.theMarker = L.marker(self.coords[i], { icon: greenIcon })
+          if (i == 0) {
+            global.theMarker = L.marker(self.coords[i], { icon: pusat })
             .addTo(mymap)
             .bindPopup(
-              "<p>UPTD " + i + ", Alamat: " + self.root_uptd[i] + "</p>"
+              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung</h6> Alamat: " + self.root_uptd[i] + "</p>"
             );
+          }
+          else if (i==1) {
+            global.theMarker = L.marker(self.coords[i], { icon: uptd })
+            .addTo(mymap)
+            .bindPopup(
+              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Barat</h6> Alamat: " + self.root_uptd[i] + "</p>"
+            );
+          }
+          else if (i==2) {
+            global.theMarker = L.marker(self.coords[i], { icon: uptd })
+            .addTo(mymap)
+            .bindPopup(
+              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Timur</h6> Alamat: " + self.root_uptd[i] + "</p>"
+            );
+          }
+          else if (i==3) {
+            global.theMarker = L.marker(self.coords[i], { icon: uptd })
+            .addTo(mymap)
+            .bindPopup(
+              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Utara</h6> Alamat: " + self.root_uptd[i] + "</p>"
+            );
+          }
+          
         }
 
       });
@@ -185,5 +207,6 @@
 <style scoped>
   #mapcegahkebakaran {
     min-height: 400px;
+    margin-top: 20px;
   }
 </style>

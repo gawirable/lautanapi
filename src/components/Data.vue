@@ -29,14 +29,7 @@
       <h3>{{msg}}</h3>
       <hr>
       <div class="row">
-        <div class="col-sm-5">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quisenim dignissim, aliquet elit in,
-            facilisis nibh. Nullam in efficitur mi. Duis maximus est eu nulla egestas, sit amet elementum velit feugiat.
-            Proin id molestie arcu.
-            In et pulvinar libero. In convallis libero nec <br>massa mollis facilisis. Morbi egestas nec mi at
-            molestie.<br></p>
-        </div>
-        <div class="col-sm-7">
+        <div class="col-sm-12">
           <div id="mapdata" width="100%" height="400"></div>
         </div>
       </div>
@@ -63,13 +56,7 @@
       global.mymap = L.map("mapdata").setView([-6.9174639, 107.6191228], 15);
       //map themes
       L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
-      // marker icon
-      global.greenIcon = L.icon({
-        iconUrl: require("../assets/images/marker-icon.png"),
-        shadowUrl: require("../assets/images/marker-shadow.png"),
-        iconSize: [25, 41], // size of the icon
-        shadowSize: [41, 41] // size of the shadow
-      });
+      
       //geojson data hidran
       $.getJSON("static/map-hidran.json", function (data_hidran) {
         // add GeoJSON layer to the map once the file is loadeda
@@ -84,11 +71,22 @@
 
         //create marker
         for (let i = 0; i < self.coords.length; i++) {
-          global.theMarker = L.marker(self.coords[i], { icon: greenIcon })
+          // marker hijau 
+          if (i == 24 || i == 30 || i == 93) {
+            global.theMarker = L.marker(self.coords[i], { icon: hidranaktif })
           .addTo(mymap)
           .bindPopup(
             "<p>Hidran " + i + ", Alamat: " + self.root_hidran[i] + "</p>"
           ); 
+          }
+          else{
+            global.theMarker = L.marker(self.coords[i], { icon: hidrannon })
+          .addTo(mymap)
+          .bindPopup(
+            "<p>Hidran " + i + ", Alamat: " + self.root_hidran[i] + "</p>"
+          );
+          }
+          
         }
         
       });
