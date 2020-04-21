@@ -58,7 +58,7 @@
       L.tileLayer.provider(map_themes).addTo(mymap);
       
       //geojson data hidran
-      $.getJSON("static/map-hidran.json", function (data_hidran) {
+      $.getJSON("static/data/map-hidran.json", function (data_hidran) {
         // add GeoJSON layer to the map once the file is loadeda
         var datalayer = L.geoJson(data_hidran, {
           onEachFeature: function (feature, featureLayer) {
