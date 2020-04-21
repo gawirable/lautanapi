@@ -153,10 +153,10 @@
       //center & zoom map
       global.mymap = L.map("mapcegahkebakaran").setView([-6.9174639, 107.6191228], 13);
       //map themes
-      L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
+      L.tileLayer.provider(map_themes).addTo(mymap);
 
       // geojson data hidran
-      $.getJSON("static/map-uptd.json", function (data_uptd) {
+      $.getJSON("static/data/map-uptd.json", function (data_uptd) {
         // add GeoJSON layer to the map once the file is loadeda
         var datalayer = L.geoJson(data_uptd, {
           onEachFeature: function (feature, featureLayer) {
