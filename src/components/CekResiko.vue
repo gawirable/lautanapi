@@ -138,17 +138,20 @@
             inside(curpos, self.coords_rev[i]);
             if (inside(curpos, self.coords_rev[i])) {
               pesan = "inside polygon: " + i;
-              self.status =
-                "Anda Berada di Kecamatan: " +
-                self.root_kecamatan[i].feature.properties.nama_kecamatan;
+              $("#warning").show();
+              $("#warningmsg").show();
+              self.status = "Anda Berada di Kecamatan: " + self.root_kecamatan[i].feature.properties.nama_kecamatan;
+              self.rskecamatan = self.root_kecamatan[i].feature.properties.nama_kecamatan
               break;
             }
           }
         } catch (err) {
           pesan = "Anda Berada diluar kota bandung ";
+          $("#warning").show();
+          $("#warningmsg").hide();
           self.status = "Anda Berada diluar kota bandung ";
         }
-        console.log(pesan);
+        self.csvquery(self.rskecamatan);
 
         //geocoding
         geocodeService
@@ -175,17 +178,17 @@
         // alasql csv
         var self = this;
         var query =
-          'SELECT `*` FROM CSV("static/fix-detail-1819.csv", {headers:true})';
+          'SELECT `*` FROM CSV("static/data/fix-detail-1819.csv", {headers:true})';
         var qkcmtn18 =
-          'SELECT `*` FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and year(Tanggal) = 2018';
+          'SELECT `*` FROM CSV("static/data/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and year(Tanggal) = 2018';
         var qkcmtn19 =
-          'SELECT `*` FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and year(Tanggal) = 2019';
+          'SELECT `*` FROM CSV("static/data/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and year(Tanggal) = 2019';
         var qmaxdurasi =
-          'SELECT MAX(`Durasi`) as durasi FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
+          'SELECT MAX(`Durasi`) as durasi FROM CSV("static/data/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
         var qavgdurasi =
-          'SELECT AVG(`Durasi`) as avgdurasi FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
+          'SELECT AVG(`Durasi`) as avgdurasi FROM CSV("static/data/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '"';
         var qtoppenyebab =
-          'SELECT TOP 1 `Penyebab_Kebakaran` as toppenyebab FROM CSV("static/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and Penyebab_Kebakaran !="Dalam Penyelidikan" and Penyebab_Kebakaran!=0';
+          'SELECT TOP 1 `Penyebab_Kebakaran` as toppenyebab FROM CSV("static/data/fix-detail-1819.csv", {headers:true}) where Kecamatan="' + kecamatan + '" and Penyebab_Kebakaran !="Dalam Penyelidikan" and Penyebab_Kebakaran!=0';
         for (let i = 1; i <= 5; i++) {
           if (i == 1) {
             alasql.promise(qkcmtn18).then(function (data) {
@@ -242,7 +245,7 @@
       //center & zoom map
       global.mymap = L.map("mapid").setView([-6.9174639, 107.6191228], 15);
       //map themes
-      L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
+      L.tileLayer.provider(map_themes).addTo(mymap);
 
       //create marker
       global.theMarker = L.marker([-6.9174639, 107.6191228], { icon: pin })
@@ -257,7 +260,7 @@
 
       //---------------------------------------------------------------------------------------------------------------------
       //geojson batas kota
-      $.getJSON("static/map-kota.json", function (data_kota) {
+      $.getJSON("static/data/map-kota.json", function (data_kota) {
         // add GeoJSON layer to the map once the file is loaded
         var datalayer = L.geoJson(data_kota, {
           onEachFeature: function (feature, featureLayer) {
@@ -277,7 +280,7 @@
       });
 
       //geojson batas kecamatan
-      $.getJSON("static/map-kecamatan.json", function (data_kecamatan) {
+      $.getJSON("static/data/map-kecamatan.json", function (data_kecamatan) {
         // add GeoJSON layer to the map once the file is loadeda
         var datalayer = L.geoJson(data_kecamatan, {
           onEachFeature: function (feature, featureLayer) {

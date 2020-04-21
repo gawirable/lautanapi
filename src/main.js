@@ -34,6 +34,11 @@ global.pusat = L.icon({
   popupAnchor:  [5, -35],
 });
 
+//map themes
+global.map_themes = "Stamen.Toner" // ligth
+// global.map_themes = "CartoDB.DarkMatter" // dark
+
+
 // import bootstrap & popper
 import "bootstrap/dist/css/bootstrap.css";
 import "popper.js/dist/esm/popper.js";
@@ -46,11 +51,11 @@ import "../static/plugin/template/css/styles.css"
 import "@fortawesome/fontawesome-free/css/all.css"
 
 // import leaflet js
-require("../node_modules/leaflet/dist/leaflet.css");
-require("../node_modules/leaflet/dist/leaflet.js");
+import "leaflet/dist/leaflet.css"
+import "leaflet"
 
 // import leaflet themes
-require("./assets/plugin/leaflet-providers.js");
+import "leaflet-providers"
 
 // geocoding
 import * as geocode from "esri-leaflet-geocoder";

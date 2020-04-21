@@ -55,7 +55,7 @@
       //center & zoom map
       global.mymap = L.map("mapdata").setView([-6.9174639, 107.6191228], 15);
       //map themes
-      L.tileLayer.provider("OpenStreetMap.Mapnik").addTo(mymap);
+      L.tileLayer.provider(map_themes).addTo(mymap);
       
       //geojson data hidran
       $.getJSON("static/map-hidran.json", function (data_hidran) {
