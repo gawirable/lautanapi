@@ -36,7 +36,8 @@
             <div class="input-group-prepend"><span class="input-group-text">Cari Lokasi</span></div><input
               class="border rounded-0 shadow-sm form-control" type="text" v-model="alamat"
               v-on:keyup.enter="suggest(alamat)">
-            <div class="input-group-append"><button class="btn btn-primary shadow-sm" style="background-color: #b40b10;font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;" type="button"
+            <div class="input-group-append"><button class="btn" style="background-color: #b40b10;font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2; outline: none !important;
+   box-shadow: none;" type="button"
                 v-on:click="find_coor"><i class="fas fa-map-marker-alt"></i></button></div>
           </div>
           <div class="list-group list-group-flush sugest" style="padding-top: 20px;">

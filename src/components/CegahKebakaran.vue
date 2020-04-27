@@ -32,7 +32,8 @@
       <!-- End: header-text -->
       <div class="row" style="margin-bottom: 50px;">
         <div class="col-10 col-sm-10 offset-1 offset-sm-1">
-          <button class="btn btn-primary shadow-sm btn-block" style="background-color: #b40b10;font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;" type="button" v-on:click="find_coor">Cek lokasi saat ini
+          <button class="btn btn-block" style="background-color: #b40b10;font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2; outline: none !important;
+   box-shadow: none;" type="button" v-on:click="find_coor">Cek lokasi saat ini
             <i class="fas fa-map-marker-alt"></i></button>
           <div id="mapcegahkebakaran" class="rounded" style="min-height: 500px;background-color: #f5f5f5;"></div>
         </div>
