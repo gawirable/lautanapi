@@ -166,7 +166,7 @@
             global.theMarker = L.marker(result.latlng, { icon: pin })
               .addTo(mymap)
               .bindPopup(
-                "<p><h6>Lokasi saat ini:</h6> " + result.address.Match_addr + "<hr>Anda berada dekat dengan " + wilayah + ". Dengan jarak " + self.res_jarak.toFixed(2) + " Km" + ", Jika mobil pemadam kebakaran melaju dengan kecepatan 50 Km/h Pemadam kebakaran akan tiba dilokasi anda dalam waktu " + (self.res_jarak.toFixed(2) / 50) * 60 + " Menit</p>"
+                "<p><h6>Lokasi saat ini:</h6> " + result.address.Match_addr + "<hr>Anda berada dekat dengan " + wilayah + ". Dengan jarak " + self.res_jarak.toFixed(2) + " Km" + ", Jika mobil pemadam kebakaran melaju dengan kecepatan 50 Km/h Pemadam kebakaran akan tiba dilokasi anda dalam waktu " + ((self.res_jarak / 50) * 60).toFixed(2) + " Menit</p>"
               ).openPopup();
           });
         // console.log(self.coords[0][1]);
