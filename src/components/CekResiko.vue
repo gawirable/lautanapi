@@ -29,7 +29,7 @@
         <!-- End: header-text -->
         <div class="row" style="margin-bottom: 50px;">
             <div class="col-10 col-lg-4 offset-1" style="margin-bottom: 20px;">
-                <div style="min-height: 500px;">
+                <div>
                   <p class="text-left" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;" >Masukan alamat dan tekan enter untuk mencari lokasi atau langsung tekan tombol biru untuk mengetahui lokasi
             saat ini.<br></p>
           <div class="input-group">
@@ -77,13 +77,13 @@
             <div class="row footer" style="padding-top: 10px;">
                 <!-- Start: logo -->
                 <div class="col d-flex d-lg-flex justify-content-center justify-content-lg-center">
-                    <a class="my-auto" href="https://idjnetwork.org/" target="_blank">
+                    <a class="my-auto" href="http://idjnetwork.org/" target="_blank">
                         <div style="padding: 10px;"><img src="static/image/logo-idjn.png" width="32px"></div>
                     </a>
-                    <a href="https://github.com/gawirable/lautanapi" target="_blank">
+                    <a href="http://github.com/gawirable/lautanapi" target="_blank">
                         <div class="d-inline-block" style="padding: 10px;"><img src="static/image/logo-github.png" width="32px"></div>
                     </a>
-                    <a href="https://lautanapi.netlify.app/">
+                    <a href="http://lautanapi.netlify.app/">
                         <div class="d-inline-block" style="padding: 10px;"><img src="static/image/logo-bla.png" width="32px"></div>
                     </a>
                 </div>
