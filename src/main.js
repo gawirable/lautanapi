@@ -44,8 +44,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import "popper.js/dist/esm/popper.js";
 import "bootstrap/dist/js/bootstrap.js";
 // bootstrap themes and template
-import "../static/plugin/template/css/Navigation-Dark-Clean.css"
-import "../static/plugin/template/css/styles.css"
+// import "../static/plugin/template/css/Navigation-Dark-Clean.css"
+// import "../static/plugin/template/css/styles.css"
+
+// import style
+import "../static/css/styles.css"
 
 // install font-awesome
 import "@fortawesome/fontawesome-free/css/all.css"

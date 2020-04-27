@@ -1,43 +1,119 @@
 <template>
   <div class="home">
-    <!--<img src="../assets/logo.png">-->
-    <!-- Start: Navigation Dark Clean -->
-    <nav class="navbar navbar-dark navbar-expand-md bg-dark navigation-clean">
-        <div class="container"><a class="navbar-brand" href="#">Bandung Lautan Api</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><router-link to="/" class="nav-link active">Beranda</router-link> </li>
-                    <li class="nav-item" role="presentation"><router-link to="/data" class="nav-link ">Data</router-link></li>
-                    <li class="nav-item" role="presentation"><router-link to="/cek-resiko" class="nav-link ">Cek Resiko</router-link></li>
-                    <li class="nav-item" role="presentation"><router-link to="/cegah-kebakaran" class="nav-link ">Cegah Kebakaran</router-link></li>
-                </ul>
+    <!-- Start: wraper -->
+    <div class="container-fluid wraper" style="padding-top: 50px;background-color: #222222;padding-right: 0px;padding-left: 0px;">
+        <!-- Start: header-logo -->
+        <div class="row header">
+            <div class="col d-flex d-lg-flex justify-content-center justify-content-lg-center">
+                <!-- Start: logo bla -->
+                <div id="logo-header" style="margin-bottom: 20px;"><img src="static/image/logo-bla.png" width="200px"></div>
+                <!-- End: logo bla -->
             </div>
         </div>
-    </nav>
-    <!-- End: Navigation Dark Clean -->
-    <div class="container border rounded shadow-sm" style="margin-top: 20px;width: 95%;padding: 20px;">
-        <h3>{{ msg }}</h3>
-        <hr>
+        <!-- End: header-logo -->
+        <!-- Start: header-text -->
+        <div class="row header" style="margin-bottom: 50px;">
+            <div class="col justify-content-center justify-content-lg-center">
+                <!-- Start: header-text -->
+                <div>
+                    <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2;">BANDUNG LAUTAN <span style="color: #b40b10;">API</span></h1>
+                </div>
+                <!-- End: header-text -->
+                <!-- Start: sub-header -->
+                <div>
+                    <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Seberapa dekat kita dengan kebakaran?</h4>
+                </div>
+                <!-- End: sub-header -->
+            </div>
+        </div>
+        <!-- End: header-text -->
+        <!-- Start: konten -->
+        <div class="row konten" style="padding-right: 10%;padding-left: 10%;">
+            <div class="col-sm-12 col-lg-4" style="margin-bottom: 20px;">
+                <router-link to="/data">
+                    <div class="card border-dark nav-menu"><img class="card-img w-100 d-block" src="static/image/foto-1.jpg" style="filter: saturate(0%);">
+                        <div class="card-img-overlay">
+                            <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">DATA</h4>
+                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff;">Dalam 2 tahun terakhir, ada 5 kebakaran setiap pekannya</p>
+                        </div>
+                    </div>
+                </router-link>
+            </div>
+            <div class="col-sm-12 col-lg-4" style="margin-bottom: 20px;">
+                <router-link to="/cek-resiko">
+                    <div class="card border-dark nav-menu"><img class="card-img w-100 d-block" src="static/image/foto-1.jpg" style="filter: saturate(0%);">
+                        <div class="card-img-overlay">
+                            <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">CEK RESIKO</h4>
+                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff;">Dari 94 hidran, hanya 3 yang terpakai</p>
+                        </div>
+                    </div>
+                </router-link>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+                <router-link to="/cegah-kebakaran">
+                    <div class="card border-dark nav-menu" style="margin-bottom: 20px;"><img class="card-img w-100 d-block" src="static/image/foto-1.jpg" style="filter: saturate(0%);">
+                        <div class="card-img-overlay">
+                            <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">CEGAH KEBAKARAN</h4>
+                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff;">15 menit yang menentukan</p>
+                        </div>
+                    </div>
+                </router-link>
+            </div>
+        </div>
+        <!-- End: konten -->
+        <!-- Start: footer-wraper -->
+        <div style="margin-top: 50px;background-color: #1a1a1a;width: auto;">
+            <!-- Start: footer -->
+            <div class="row footer" style="padding-top: 10px;">
+                <!-- Start: logo -->
+                <div class="col d-flex d-lg-flex justify-content-center justify-content-lg-center">
+                    <a class="my-auto" href="https://idjnetwork.org/" target="_blank">
+                        <div style="padding: 10px;"><img src="static/image/logo-idjn.png" width="32px"></div>
+                    </a>
+                    <a href="https://github.com/gawirable/lautanapi" target="_blank">
+                        <div class="d-inline-block" style="padding: 10px;"><img src="static/image/logo-github.png" width="32px"></div>
+                    </a>
+                    <a href="https://lautanapi.netlify.app/">
+                        <div class="d-inline-block" style="padding: 10px;"><img src="static/image/logo-bla.png" width="32px"></div>
+                    </a>
+                </div>
+                <!-- End: logo -->
+            </div>
+            <!-- End: footer -->
+            <!-- Start: footer-text -->
+            <div class="row footer-text">
+                <div class="col d-lg-flex justify-content-lg-center">
+                    <!-- Start: footer text -->
+                    <div>
+                        <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;">DATA JURNALISM HACKATHON 2020</p>
+                    </div>
+                    <!-- End: footer text -->
+                </div>
+            </div>
+            <!-- End: footer-text -->
+        </div>
+        <!-- End: footer-wraper -->
     </div>
+    <!-- End: wraper -->
   </div>
 </template>
 
 <script>
-export default {
-  name: "Home",
-  data() {
-    return {
-      msg: "Lautan Api - Home"
-    };
-  },
-  methods: {}, //end methode
-  created: function() {}, //end created
-  mounted: function() {}, //end mounted
-  updated: function() {} //end updated
-}; //end export
+  export default {
+    name: "Home",
+    data() {
+      return {
+        msg: "Lautan Api - Home"
+      };
+    },
+    methods: {}, //end methode
+    created: function () { }, //end created
+    mounted: function () { }, //end mounted
+    updated: function () { } //end updated
+  }; //end export
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>

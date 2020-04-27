@@ -1,41 +1,117 @@
 <template>
-  <div class="cegah_kebakaran">
-    <!--<img src="../assets/logo.png">-->
-    <!-- Start: Navigation Dark Clean -->
-    <nav class="navbar navbar-dark navbar-expand-md bg-dark navigation-clean">
-      <div class="container"><a class="navbar-brand" href="#">Bandung Lautan Api</a><button data-toggle="collapse"
-          class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-            class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navcol-1">
-          <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item" role="presentation">
-              <router-link to="/" class="nav-link">Beranda</router-link>
-            </li>
-            <li class="nav-item" role="presentation">
-              <router-link to="/data" class="nav-link ">Data</router-link>
-            </li>
-            <li class="nav-item" role="presentation">
-              <router-link to="/cek-resiko" class="nav-link ">Cek Resiko</router-link>
-            </li>
-            <li class="nav-item" role="presentation">
-              <router-link to="/cegah-kebakaran" class="nav-link active">Cegah Kebakaran</router-link>
-            </li>
-          </ul>
+  <div class="cegah_kebakaran" id="cegah_kebakaran">
+    <!-- Start: wraper -->
+    <div class="container-fluid wraper"
+      style="padding-top: 50px;background-color: #222222;padding-right: 0px;padding-left: 0px;">
+      <!-- Start: header-logo -->
+      <div class="row header">
+        <div class="col d-flex d-lg-flex justify-content-center justify-content-lg-center">
+          <!-- Start: logo bla -->
+          <div id="logo-header" style="margin-bottom: 20px;"><img src="static/image/logo-bla.png" width="200px"></div>
+          <!-- End: logo bla -->
         </div>
       </div>
-    </nav>
-    <!-- End: Navigation Dark Clean -->
-    <div class="container border rounded shadow-sm" style="margin-top: 20px;width: 95%;padding: 20px;">
-      <h3>{{ msg }}</h3>
-      <hr>
-      <div class="row">
-        <div class="col-sm-12">
-          <button class="btn btn-primary shadow-sm btn-block" type="button" v-on:click="find_coor">Cek lokasi saat ini
+      <!-- End: header-logo -->
+      <!-- Start: header-text -->
+      <div class="row header" style="margin-bottom: 50px;">
+        <div class="col justify-content-center justify-content-lg-center">
+          <!-- Start: header-text -->
+          <div>
+            <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2;">BANDUNG
+              LAUTAN <span style="color: #b40b10;">API</span></h1>
+          </div>
+          <!-- End: header-text -->
+          <!-- Start: sub-header -->
+          <div>
+            <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Seberapa
+              dekat kita dengan kebakaran?</h4>
+          </div>
+          <!-- End: sub-header -->
+        </div>
+      </div>
+      <!-- End: header-text -->
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col-10 col-sm-10 offset-1 offset-sm-1">
+          <button class="btn btn-primary shadow-sm btn-block" style="background-color: #b40b10;font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;" type="button" v-on:click="find_coor">Cek lokasi saat ini
             <i class="fas fa-map-marker-alt"></i></button>
-          <div id="mapcegahkebakaran" width="100%" height="400"></div>
+          <div id="mapcegahkebakaran" class="rounded" style="min-height: 500px;background-color: #f5f5f5;"></div>
         </div>
       </div>
+      <!-- Start: konten -->
+      <div class="row konten" style="padding-right: 10%;padding-left: 10%;">
+        <div class="col-sm-12 col-lg-6 offset-lg-3" style="margin-bottom: 20px;">
+          <p style="color: #e2e2e2;">Petugas pemadam kebakaran dari berbagai wilayah di Bandung Raya berjibaku hingga
+            kurang lebih 40 jam untuk memadamkan kebakaran di Pasar Kosambi. Kebakaran bermula pada Minggu, 19 Mei 2019
+            sekitar pukul delapan malam dan baru dituntaskan
+            pada Senin, 21 Mei 2019 sekitar pukul 12 siang.<br><br>Dampak dari kebakaran itu, setidaknya menghancurkan
+            172 kios dan mengakibatkan kerugian hingga Rp20 miliar. Kebakaran ini jadi satu yang paling sulit
+            penuntasannya dari 528 kasus
+            lainnya sepanjang 2018-2019 lalu.<br><br>Kepala Bidang Kesiapsiagaan Operasi Pemadam dan Penyelamatan Dinas
+            Kebakaran dan Penanggulangan Bencana (Diskar PB) Kota Bandung, Yusuf Hidayat mengatakan, pencegahan
+            kebakaran yang paling baik
+            adalah kesiapsiagaan dan penanganan dini dari warga. “Untuk minimalisir harta benda dan jatuhnya korban,”
+            ujar Yusuf yang ditemui pada Maret 2020 lalu.<br><br>Masyarakat bisa melakukan penanganan dini dengan
+            memastikan sambungan listriknya
+            aman serta membekali diri dengan kemampuan dasar pemadaman api sejak masih kecil sumbernya. Pada saat
+            berbarengan, sebaiknya ada yang menghubungi <em>call center </em>Diskar PB Kota Bandung di 022-113 atau
+            022-7207113.<br><br>Yusuf
+            mengatakan, standar pelayanan minimal adalah merespon dan tiba di lokasi kejadian paling lambat 15 menit.
+            “Dari mulai menerima laporan, persiapan, berangkat, dan sampai (di lokasi), gelar selang di sana harus 15
+            menit. Kalau penanganan
+            bisa lebih (waktunya),” ungkap Yusuf merujuk pada Peraturan Menteri Dalam Negeri no 114 tahun 2018 tentang
+            Standar Teknis Pelayanan Dasar pada Standar Pelayanan Minimal Sub Urusan Kebakaran Daerah
+            Kabupaten/Kota.<br><br>Guna memastikan
+            kehadiran petugas di lokasi kejadian dalam waktu kurang dari 15 menit, Diskar PB Kota Bandung memiliki empat
+            unit pelaksana teknis (UPT) di empat arah mata angin, selain kantor pusat di Jalan Sukabumi. “Unit yang
+            paling dekat akan
+            merespon lebih dulu, branwir dan petugas dari unit lain akan segera <em>back-up</em>,” ujar Yusuf.<br></p>
+        </div>
+      </div>
+      <!-- End: konten -->
+      <!-- Start: footer-wraper -->
+      <div style="margin-top: 50px;background-color: #1a1a1a;width: auto;">
+        <!-- Start: footer -->
+        <div class="row footer" style="padding-top: 10px;">
+          <!-- Start: logo -->
+          <div class="col d-flex d-lg-flex justify-content-center justify-content-lg-center">
+            <a class="my-auto" href="https://idjnetwork.org/" target="_blank">
+              <div style="padding: 10px;"><img src="static/image/logo-idjn.png" width="32px"></div>
+            </a>
+            <a href="https://github.com/gawirable/lautanapi" target="_blank">
+              <div class="d-inline-block" style="padding: 10px;"><img src="static/image/logo-github.png" width="32px">
+              </div>
+            </a>
+            <a href="https://lautanapi.netlify.app/">
+              <div class="d-inline-block" style="padding: 10px;"><img src="static/image/logo-bla.png" width="32px">
+              </div>
+            </a>
+          </div>
+          <!-- End: logo -->
+        </div>
+        <!-- End: footer -->
+        <!-- Start: footer-text -->
+        <div class="row footer-text">
+          <div class="col d-lg-flex justify-content-lg-center">
+            <!-- Start: footer text -->
+            <div>
+              <p class="text-center"
+                style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;">DATA JURNALISM
+                HACKATHON 2020</p>
+            </div>
+            <!-- End: footer text -->
+          </div>
+        </div>
+        <!-- End: footer-text -->
+      </div>
+      <!-- End: footer-wraper -->
     </div>
+    <!-- End: wraper -->
+    <a href="#cegah_kebakaran">
+      <div class="totop rounded"><i class="fas  fa-arrow-up"></i></div>
+    </a>
+    <router-link to="/">
+      <div class="tohome rounded"><i class="fas  fa-home"></i></div>
+    </router-link>
   </div>
 </template>
 
@@ -49,8 +125,8 @@
         coords: [],
         terpendek: 0,
         jarak: [],
-        index_uptd:0,
-        res_jarak:0,
+        index_uptd: 0,
+        res_jarak: 0,
       };
     },
     methods: {
@@ -89,7 +165,7 @@
             global.theMarker = L.marker(result.latlng, { icon: pin })
               .addTo(mymap)
               .bindPopup(
-                "<p><h6>Lokasi saat ini:</h6> " + result.address.Match_addr + "<hr>Anda berada dekat dengan "+wilayah +". Dengan jarak "+ self.res_jarak.toFixed(2) +" Km" + ", Jika mobil pemadam kebakaran melaju dengan kecepatan 50 Km/h Pemadam kebakaran akan tiba dilokasi anda dalam waktu "+ (self.res_jarak.toFixed(2)/50)*60 +" Menit</p>"
+                "<p><h6>Lokasi saat ini:</h6> " + result.address.Match_addr + "<hr>Anda berada dekat dengan " + wilayah + ". Dengan jarak " + self.res_jarak.toFixed(2) + " Km" + ", Jika mobil pemadam kebakaran melaju dengan kecepatan 50 Km/h Pemadam kebakaran akan tiba dilokasi anda dalam waktu " + (self.res_jarak.toFixed(2) / 50) * 60 + " Menit</p>"
               ).openPopup();
           });
         // console.log(self.coords[0][1]);
@@ -171,40 +247,40 @@
         for (let i = 0; i < self.coords.length; i++) {
           if (i == 0) {
             global.theMarker = L.marker(self.coords[i], { icon: pusat })
-            .addTo(mymap)
-            .bindPopup(
-              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung</h6> Alamat: " + self.root_uptd[i] + "</p>"
-            );
+              .addTo(mymap)
+              .bindPopup(
+                "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung</h6> Alamat: " + self.root_uptd[i] + "</p>"
+              );
           }
-          else if (i==1) {
+          else if (i == 1) {
             global.theMarker = L.marker(self.coords[i], { icon: uptd })
-            .addTo(mymap)
-            .bindPopup(
-              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Barat</h6> Alamat: " + self.root_uptd[i] + "</p>"
-            );
+              .addTo(mymap)
+              .bindPopup(
+                "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Barat</h6> Alamat: " + self.root_uptd[i] + "</p>"
+              );
           }
-          else if (i==2) {
+          else if (i == 2) {
             global.theMarker = L.marker(self.coords[i], { icon: uptd })
-            .addTo(mymap)
-            .bindPopup(
-              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Timur</h6> Alamat: " + self.root_uptd[i] + "</p>"
-            );
+              .addTo(mymap)
+              .bindPopup(
+                "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Timur</h6> Alamat: " + self.root_uptd[i] + "</p>"
+              );
           }
-          else if (i==3) {
+          else if (i == 3) {
             global.theMarker = L.marker(self.coords[i], { icon: uptd })
-            .addTo(mymap)
-            .bindPopup(
-              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Utara</h6> Alamat: " + self.root_uptd[i] + "</p>"
-            );
+              .addTo(mymap)
+              .bindPopup(
+                "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Utara</h6> Alamat: " + self.root_uptd[i] + "</p>"
+              );
           }
-          else if (i==4) {
+          else if (i == 4) {
             global.theMarker = L.marker(self.coords[i], { icon: uptd })
-            .addTo(mymap)
-            .bindPopup(
-              "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Selatan</h6> Alamat: " + self.root_uptd[i] + "</p>"
-            );
+              .addTo(mymap)
+              .bindPopup(
+                "<p><h6>Dinas Kebakaran dan Penanggulangan Bencana Kota Bandung Wilayah Selatan</h6> Alamat: " + self.root_uptd[i] + "</p>"
+              );
           }
-          
+
         }
 
       });
