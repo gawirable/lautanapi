@@ -21,7 +21,7 @@
                 <!-- End: header-text -->
                 <!-- Start: sub-header -->
                 <div>
-                    <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Seberapa dekat kita dengan kebakaran?</h4>
+                    <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Jalan buntu memadamkan api di Kota Bandung.</h4>
                 </div>
                 <!-- End: sub-header -->
             </div>
