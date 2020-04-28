@@ -130,7 +130,7 @@
                                 style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;">
                                 <a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode.id"
                                     style="color:#b40b10; text-decoration: none; font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;">CC
-                                    BY-NC-SA 4.0</a> <br> JOURNALISM HACKATHON 2020</p>
+                                    BY-NC-SA 4.0</a> <br>DATA JOURNALISM HACKATHON 2020</p>
                         </div>
                         <!-- End: footer text -->
                     </div>
