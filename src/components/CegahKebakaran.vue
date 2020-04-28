@@ -17,13 +17,16 @@
         <div class="col justify-content-center justify-content-lg-center">
           <!-- Start: header-text -->
           <div>
-            <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2; padding:0 10% 0 10%;">BANDUNG
+            <h1 class="text-center"
+              style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2; padding:0 10% 0 10%;">BANDUNG
               LAUTAN <span style="color: #b40b10;">API</span></h1>
           </div>
           <!-- End: header-text -->
           <!-- Start: sub-header -->
           <div>
-            <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2; padding: 0 10% 0 10%;">15 menit yang menentukan</h4>
+            <h4 class="text-center"
+              style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2; padding: 0 10% 0 10%;">15 menit
+              yang menentukan</h4>
           </div>
           <!-- End: sub-header -->
         </div>
@@ -42,29 +45,33 @@
         <div class="col-sm-12 col-lg-6 offset-lg-3" style="margin-bottom: 20px;">
           <p style="color: #e2e2e2;">Petugas pemadam kebakaran dari berbagai wilayah di Bandung Raya berjibaku hingga
             kurang lebih 40 jam untuk memadamkan kebakaran di Pasar Kosambi. Kebakaran bermula pada Minggu, 19 Mei 2019
-            sekitar pukul delapan malam dan baru dituntaskan
-            pada Senin, 21 Mei 2019 sekitar pukul 12 siang.<br><br>Dampak dari kebakaran itu, setidaknya menghancurkan
-            172 kios dan mengakibatkan kerugian hingga Rp20 miliar. Kebakaran ini jadi satu yang paling sulit
-            penuntasannya dari 528 kasus
-            lainnya sepanjang 2018-2019 lalu.<br><br>Kepala Bidang Kesiapsiagaan Operasi Pemadam dan Penyelamatan Dinas
-            Kebakaran dan Penanggulangan Bencana (Diskar PB) Kota Bandung, Yusuf Hidayat mengatakan, pencegahan
-            kebakaran yang paling baik
-            adalah kesiapsiagaan dan penanganan dini dari warga. “Untuk minimalisir harta benda dan jatuhnya korban,”
-            ujar Yusuf yang ditemui pada Maret 2020 lalu.<br><br>Masyarakat bisa melakukan penanganan dini dengan
-            memastikan sambungan listriknya
-            aman serta membekali diri dengan kemampuan dasar pemadaman api sejak masih kecil sumbernya. Pada saat
-            berbarengan, sebaiknya ada yang menghubungi <em>call center </em>Diskar PB Kota Bandung di 022-113 atau
-            022-7207113.<br><br>Yusuf
-            mengatakan, standar pelayanan minimal adalah merespon dan tiba di lokasi kejadian paling lambat 15 menit.
-            “Dari mulai menerima laporan, persiapan, berangkat, dan sampai (di lokasi), gelar selang di sana harus 15
-            menit. Kalau penanganan
-            bisa lebih (waktunya),” ungkap Yusuf merujuk pada Peraturan Menteri Dalam Negeri no 114 tahun 2018 tentang
-            Standar Teknis Pelayanan Dasar pada Standar Pelayanan Minimal Sub Urusan Kebakaran Daerah
-            Kabupaten/Kota.<br><br>Guna memastikan
-            kehadiran petugas di lokasi kejadian dalam waktu kurang dari 15 menit, Diskar PB Kota Bandung memiliki empat
-            unit pelaksana teknis (UPT) di empat arah mata angin, selain kantor pusat di Jalan Sukabumi. “Unit yang
-            paling dekat akan
-            merespon lebih dulu, branwir dan petugas dari unit lain akan segera <em>back-up</em>,” ujar Yusuf.<br></p>
+            sekitar pukul delapan malam dan baru dituntaskan pada Senin, 21 Mei 2019 sekitar pukul 12 siang.<br><br>
+            Dampak dari kebakaran itu, setidaknya menghancurkan 172 kios dan mengakibatkan kerugian hingga Rp20 miliar.
+            Kebakaran ini jadi satu yang paling sulit penuntasannya dari 528 kasus lainnya sepanjang 2018-2019 lalu.<br><br>
+            Kepala Bidang Kesiapsiagaan Operasi Pemadam dan Penyelamatan Dinas Kebakaran dan Penanggulangan Bencana
+            (Diskar PB) Kota Bandung, Yusuf Hidayat mengatakan, pencegahan kebakaran yang paling baik adalah
+            kesiapsiagaan dan penanganan dini dari warga. “Untuk minimalisir harta benda dan jatuhnya korban,” ujar
+            Yusuf yang ditemui pada Kamis, 19 Maret 2020 lalu.<br><br>
+            Masyarakat bisa melakukan penanganan dini dengan memastikan sambungan listriknya aman serta membekali diri
+            dengan kemampuan dasar pemadaman api sejak masih kecil sumbernya. Pada saat berbarengan, sebaiknya ada yang
+            menghubungi call center Diskar PB Kota Bandung di 022-113 atau 022-7207113.
+          </p>
+          <div>
+            <iframe src="https://flo.uri.sh/visualisation/2014224/embed"
+              style="height: 500px; width: 100%; margin:20px 0 0 0; background-color: #525252; border: none;"></iframe>
+            <p style="color: #e2e2e2; font-size:12px; font-style: italic; text-align: center;">Kasus kebakaran Kota
+              Bandung tahun 2018-2019 (Olah data Tim Bandung Lautan Api)</p>
+          </div>
+          <p style="color: #e2e2e2;">
+            Yusuf mengatakan, standar pelayanan minimal adalah merespon dan tiba di lokasi kejadian paling lambat 15
+            menit. “Dari mulai menerima laporan, persiapan, berangkat, dan sampai (di lokasi), gelar selang di sana
+            harus 15 menit. Kalau penanganan bisa lebih (waktunya),” ungkap Yusuf merujuk pada Peraturan Menteri Dalam
+            Negeri no 114 tahun 2018 tentang Standar Teknis Pelayanan Dasar pada Standar Pelayanan Minimal Sub Urusan
+            Kebakaran Daerah Kabupaten/Kota.<br><br>
+            Guna memastikan kehadiran petugas di lokasi kejadian dalam waktu kurang dari 15 menit, Diskar PB Kota
+            Bandung memiliki empat unit pelaksana teknis (UPT) di empat arah mata angin, selain kantor pusat di Jalan
+            Sukabumi. “Unit yang paling dekat akan merespon lebih dulu, branwir dan petugas dari unit lain akan segera
+            back-up,” ujar Yusuf.</p>
         </div>
       </div>
       <!-- End: konten -->
@@ -95,7 +102,10 @@
             <!-- Start: footer text -->
             <div>
               <p class="text-center"
-                style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;"><a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode.id" style="color:#b40b10; text-decoration: none; font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;">CC BY-NC-SA 4.0</a> <br>DATA JOURNALISM
+                style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;"><a
+                  href="https://creativecommons.org/licenses/by-nc/4.0/legalcode.id"
+                  style="color:#b40b10; text-decoration: none; font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;">CC
+                  BY-NC-SA 4.0</a> <br>DATA JOURNALISM
                 HACKATHON 2020</p>
             </div>
             <!-- End: footer text -->
