@@ -17,14 +17,13 @@
         <div class="col justify-content-center justify-content-lg-center">
           <!-- Start: header-text -->
           <div>
-            <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2;">BANDUNG
+            <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2; padding:0 10% 0 10%;">BANDUNG
               LAUTAN <span style="color: #b40b10;">API</span></h1>
           </div>
           <!-- End: header-text -->
           <!-- Start: sub-header -->
           <div>
-            <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Seberapa
-              dekat kita dengan kebakaran?</h4>
+            <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Warga sendirian dalam menghada api. Seberapa dekat kita dengan kebakaran?</h4>
           </div>
           <!-- End: sub-header -->
         </div>
@@ -166,7 +165,7 @@
             global.theMarker = L.marker(result.latlng, { icon: pin })
               .addTo(mymap)
               .bindPopup(
-                "<p><h6>Lokasi saat ini:</h6> " + result.address.Match_addr + "<hr>Anda berada dekat dengan " + wilayah + ". Dengan jarak " + self.res_jarak.toFixed(2) + " Km" + ", Jika mobil pemadam kebakaran melaju dengan kecepatan 50 Km/h Pemadam kebakaran akan tiba dilokasi anda dalam waktu " + (self.res_jarak.toFixed(2) / 50) * 60 + " Menit</p>"
+                "<p><h6>Lokasi saat ini:</h6> " + result.address.Match_addr + "<hr>Anda berada dekat dengan " + wilayah + ". Dengan jarak " + self.res_jarak.toFixed(2) + " Km" + ", Jika mobil pemadam kebakaran melaju dengan kecepatan 50 Km/h Pemadam kebakaran akan tiba dilokasi anda dalam waktu " + ((self.res_jarak / 50) * 60).toFixed(2) + " Menit</p>"
               ).openPopup();
           });
         // console.log(self.coords[0][1]);

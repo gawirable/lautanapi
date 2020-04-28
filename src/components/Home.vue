@@ -16,7 +16,7 @@
             <div class="col justify-content-center justify-content-lg-center">
                 <!-- Start: header-text -->
                 <div>
-                    <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2;">BANDUNG LAUTAN <span style="color: #b40b10;">API</span></h1>
+                    <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2; padding:0 10% 0 10%;">BANDUNG LAUTAN <span style="color: #b40b10;">API</span></h1>
                 </div>
                 <!-- End: header-text -->
                 <!-- Start: sub-header -->
@@ -31,30 +31,30 @@
         <div class="row konten" style="padding-right: 10%;padding-left: 10%;">
             <div class="col-sm-12 col-lg-4" style="margin-bottom: 20px;">
                 <router-link to="/data">
-                    <div class="card border-dark nav-menu"><img class="card-img w-100 d-block" src="static/image/foto-1.jpg" style="filter: saturate(0%);">
+                    <div class="card border-dark nav-menu"><img class="card-img w-100 d-block" src="static/image/bg-01.png" style="filter: saturate(0%);">
                         <div class="card-img-overlay">
                             <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">DATA</h4>
-                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff;">Dalam 2 tahun terakhir, ada 5 kebakaran setiap pekannya</p>
+                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff; font-size:14px;">Dalam 2 tahun terakhir, ada 5 kebakaran setiap pekannya</p>
                         </div>
                     </div>
                 </router-link>
             </div>
             <div class="col-sm-12 col-lg-4" style="margin-bottom: 20px;">
                 <router-link to="/cek-resiko">
-                    <div class="card border-dark nav-menu"><img class="card-img w-100 d-block" src="static/image/foto-1.jpg" style="filter: saturate(0%);">
+                    <div class="card border-dark nav-menu"><img class="card-img w-100 d-block" src="static/image/bg-02.png" style="filter: saturate(0%);">
                         <div class="card-img-overlay">
                             <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">CEK RESIKO</h4>
-                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff;">Dari 94 hidran, hanya 3 yang terpakai</p>
+                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff; font-size:14px;">Dari 94 hidran, hanya 3 yang terpakai</p>
                         </div>
                     </div>
                 </router-link>
             </div>
             <div class="col-sm-12 col-lg-4">
                 <router-link to="/cegah-kebakaran">
-                    <div class="card border-dark nav-menu" style="margin-bottom: 20px;"><img class="card-img w-100 d-block" src="static/image/foto-1.jpg" style="filter: saturate(0%);">
+                    <div class="card border-dark nav-menu" style="margin-bottom: 20px;"><img class="card-img w-100 d-block" src="static/image/bg-03.png" style="filter: saturate(0%);">
                         <div class="card-img-overlay">
                             <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">CEGAH KEBAKARAN</h4>
-                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff;">15 menit yang menentukan</p>
+                            <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff; font-size:14px;">15 menit yang menentukan</p>
                         </div>
                     </div>
                 </router-link>
