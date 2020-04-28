@@ -23,7 +23,7 @@
           <!-- End: header-text -->
           <!-- Start: sub-header -->
           <div>
-            <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Warga sendirian dalam menghada api. Seberapa dekat kita dengan kebakaran?</h4>
+            <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2; padding: 0 10% 0 10%;">15 menit yang menentukan</h4>
           </div>
           <!-- End: sub-header -->
         </div>
@@ -95,7 +95,7 @@
             <!-- Start: footer text -->
             <div>
               <p class="text-center"
-                style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;">DATA JURNALISM
+                style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;"><a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode.id" style="color:#b40b10; text-decoration: none; font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;">CC BY-NC-SA 4.0</a> <br>DATA JOURNALISM
                 HACKATHON 2020</p>
             </div>
             <!-- End: footer text -->

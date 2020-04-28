@@ -21,7 +21,7 @@
                 <!-- End: header-text -->
                 <!-- Start: sub-header -->
                 <div>
-                    <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;">Jalan buntu memadamkan api di Kota Bandung.</h4>
+                    <h4 class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2; padding: 0 10% 0 10%;">Jalan buntu memadamkan api di Kota Bandung.</h4>
                 </div>
                 <!-- End: sub-header -->
             </div>
@@ -96,7 +96,7 @@
                 <div class="col d-lg-flex justify-content-lg-center">
                     <!-- Start: footer text -->
                     <div>
-                        <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;">DATA JURNALISM HACKATHON 2020</p>
+                        <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;"><a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode.id" style="color:#b40b10; text-decoration: none; font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;">CC BY-NC-SA 4.0</a> <br>DATA JOURNALISM HACKATHON 2020</p>
                     </div>
                     <!-- End: footer text -->
                 </div>
@@ -333,7 +333,7 @@
           }
         }
         //create polygon kecamatan
-        //var polygon_kota = L.polygon(coords_rev_kota).addTo(mymap);
+        // var polygon_kota = L.polygon(self.coords_rev_kota).addTo(mymap);
       });
 
       //geojson batas kecamatan
@@ -356,7 +356,9 @@
           }
         }
         //create polygon kecamatan
-        // var polygon = L.polygon(self.coords_rev).addTo(mymap);
+        var polygon = L.polygon(self.coords_rev).addTo(mymap);
+        polygon.setStyle({fillColor: '#b40b10', color:'#b40b10'});
+        console.log(self.root_kecamatan);
       });
       //---------------------------------------------------------------------------------------------------------------------
 

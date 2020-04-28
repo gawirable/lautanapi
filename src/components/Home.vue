@@ -43,7 +43,7 @@
                 <router-link to="/cek-resiko">
                     <div class="card border-dark nav-menu"><img class="card-img w-100 d-block" src="static/image/bg-02.png" style="filter: saturate(0%);">
                         <div class="card-img-overlay">
-                            <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">CEK RESIKO</h4>
+                            <h4 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 700;color: #b40b10;">CEK RISIKO</h4>
                             <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;color: #ffffff; font-size:14px;">Dari 94 hidran, hanya 3 yang terpakai</p>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                 <div class="col d-lg-flex justify-content-lg-center">
                     <!-- Start: footer text -->
                     <div>
-                        <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;">DATA JURNALISM HACKATHON 2020</p>
+                        <p class="text-center" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;color: #e2e2e2;"><a href="https://creativecommons.org/licenses/by-nc/4.0/legalcode.id" style="color:#b40b10; text-decoration: none; font-family: Roboto, sans-serif;font-weight: 400;font-size: 10px;">CC BY-NC-SA 4.0</a> <br> JOURNALISM HACKATHON 2020</p>
                     </div>
                     <!-- End: footer text -->
                 </div>
