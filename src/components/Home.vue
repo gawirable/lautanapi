@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="home" id="home">
         <!-- Start: wraper -->
         <div class="container-fluid wraper"
             style="padding-top: 50px;background-color: #222222;padding-right: 0px;padding-left: 0px;">
@@ -140,7 +140,7 @@
             <!-- End: footer-wraper -->
         </div>
         <!-- End: wraper -->
-        <a href="#data">
+        <a href="#home">
             <div class="totop rounded"><i class="fas  fa-arrow-up"></i></div>
           </a>
     </div>
