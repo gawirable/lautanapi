@@ -17,7 +17,7 @@
         <div class="col justify-content-center justify-content-lg-center">
           <!-- Start: header-text -->
           <div>
-            <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2;">BANDUNG
+            <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2; padding:0 10% 0 10%;">BANDUNG
               LAUTAN <span style="color: #b40b10;">API</span></h1>
           </div>
           <!-- End: header-text -->

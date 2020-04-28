@@ -16,7 +16,7 @@
             <div class="col justify-content-center justify-content-lg-center">
                 <!-- Start: header-text -->
                 <div>
-                    <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2;">BANDUNG LAUTAN <span style="color: #b40b10;">API</span></h1>
+                    <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2; padding:0 10% 0 10%;">BANDUNG LAUTAN <span style="color: #b40b10;">API</span></h1>
                 </div>
                 <!-- End: header-text -->
                 <!-- Start: sub-header -->
@@ -30,6 +30,7 @@
         <div class="row" style="margin-bottom: 50px;">
             <div class="col-10 col-lg-10 offset-1 offset-lg-1">
                 <div id="mapdata" class="rounded" style="min-height: 500px;background-color: #f5f5f5;"></div>
+                <div style="margin-top: 10px;"><p style="color: #e2e2e2; font-size:12px; font-style: italic; text-align: center;">Sebaran hidaran di Kota Bandung (Olah data Tim Bandung Lautan Api)</p></div>
             </div>
         </div>
         <!-- Start: konten -->
@@ -41,7 +42,14 @@
                     Sarannya, kunci portal itu disimpan di pos yang mudah diakses,” ungkap Yusuf.<br><br>Setidaknya tiga orang meninggal dunia dan 25 orang lainnya luka-luka dalam 258 kasus kebakaran pada tahun 2018. Sementara pada tahun 2019, tercatat
                     ada 271 kasus kebakaran dengan tujuh korban meninggal dunia dan 82 orang lainnya luka-luka.<br><br>Korsleting listrik (termasuk AC, aki mobil, serta pengapian mobil) menjadi penyebab kebakaran tertinggi dalam periode 2018-2019 dengan
                     122 kasus.<br><br>Data Diskar PB Kota Bandung tahun 2018-2019 memperlihatkan masih ada 236 dari 529 kasus kebakaran yang belum diketahui penyebabnya. Mereka mengidentifikasinya sebagai kasus yang masih dalam penyelidikan. “Kami serahkan
-                    ke pihak kepolisian,” ungkap Yusuf.<br><br>Selain itu, ada 33 penyebab lain kebakaran seperti korsleting listrik, pembakaran sampah, hingga masalah pada sambungan gas.<br><br>Dalam upaya memadamkan api saat kebakaran, Diskar PB Kota
+                    ke pihak kepolisian,” ungkap Yusuf.<br><br>Selain itu, ada 33 penyebab lain kebakaran seperti korsleting listrik, pembakaran sampah, hingga masalah pada sambungan gas.<br></p>
+                    <div>
+                      <iframe src="https://flo.uri.sh/visualisation/1988013/embed" style="height: 500px; width: 100%; margin:20px 0 0 0; background-color: #525252; border: none;"></iframe>
+                      <p style="color: #e2e2e2; font-size:12px; font-style: italic; text-align: center;">Kasus kebakaran Kota Bandung tahun 2018-2019 (Olah data Tim Bandung Lautan Api)</p>
+                    </div>
+                    
+                    <p style="color: #e2e2e2;">
+                    <br>Dalam upaya memadamkan api saat kebakaran, Diskar PB Kota
                     Bandung hanya memanfaatkan tiga dari setidaknya 94 titik hidran yang kami temukan seperti sudah ditandai dalam peta. “Hidran yang sering kita pakai itu di Cikapayang depan gereja, (Jalan) Supratman depan pom bensin, sama di Kordon
                     (Buah Batu),” kata Yusuf yang mengaku tidak tahu menahu jumlah total hidran di wilayah Bandung.<br><br>Hidran adalah alat pemadam kebakaran yang dipasang permanen. Airnya berasal dari sambungan pipa yang dikelola Perusahaan Daerah
                     Air Minum (PDAM) Tirtawening. Yusuf dan kawan-kawannya memanfaatkan hidran untuk mengisi mobil tangki pemadam yang berkapasitas 4 ribu-8 ribu liter. “Paling lama lima menit harus terisi karena ada standar pelayanan minimal. Lebih cepat

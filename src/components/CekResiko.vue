@@ -16,7 +16,7 @@
             <div class="col justify-content-center justify-content-lg-center">
                 <!-- Start: header-text -->
                 <div>
-                    <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2;">BANDUNG LAUTAN <span style="color: #b40b10;">API</span></h1>
+                    <h1 class="text-center" style="font-family: Poppins, sans-serif;font-weight: 800;color: #e2e2e2; padding:0 10% 0 10%;">BANDUNG LAUTAN <span style="color: #b40b10;">API</span></h1>
                 </div>
                 <!-- End: header-text -->
                 <!-- Start: sub-header -->
@@ -30,8 +30,8 @@
         <div class="row" style="margin-bottom: 50px;">
             <div class="col-10 col-lg-4 offset-1" style="margin-bottom: 20px;">
                 <div>
-                  <p class="text-left" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;" >Masukan alamat dan tekan enter untuk mencari lokasi atau langsung tekan tombol biru untuk mengetahui lokasi
-            saat ini.<br></p>
+                  <p class="text-left" style="font-family: Roboto, sans-serif;font-weight: 400;color: #e2e2e2;" >Masukan nama jalan dan tekan enter untuk melihat lokasi yang disarankan, jika alamat tidak muncul coba masukan nama kelurahan atau kecamatan, atau langsung tekan tombol merah untuk mengetahui lokasi
+            saat ini. atau klik langsung di peta untuk lokasi yang lebih akurat.<br></p>
           <div class="input-group">
             <div class="input-group-prepend"><span class="input-group-text">Cari Lokasi</span></div><input
               class="border rounded-0 shadow-sm form-control" type="text" v-model="alamat"
