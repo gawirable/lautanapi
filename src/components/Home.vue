@@ -140,6 +140,9 @@
             <!-- End: footer-wraper -->
         </div>
         <!-- End: wraper -->
+        <a href="#data">
+            <div class="totop rounded"><i class="fas  fa-arrow-up"></i></div>
+          </a>
     </div>
 </template>
 
