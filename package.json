@@ -16,7 +16,7 @@
     "bootstrap": "^4.4.1",
     "esri-leaflet": "^2.3.3",
     "esri-leaflet-geocoder": "^2.3.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "leaflet": "^1.6.0",
     "leaflet-providers": "^1.9.1",
     "point-in-polygon": "^1.0.1",
